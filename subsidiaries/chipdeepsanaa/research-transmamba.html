@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TransMamba-MoE — ChipDeepSanaa™ Research · A YEGOZCORP Company</title>
+<meta name="description" content="TransMamba-MoE: A Sequence-Level Hybrid Transformer–Mamba Architecture with Fine-Grained Mixture of Experts. Original research by Kiprop Yego, ChipDeepSanaa™ / YEGOZCORP.™">
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root { --accent: #00b4d8; --accent2: #0077a8; --bg: #050a0f; }
+body { background: var(--bg); color: #e0e8f0; }
+.g-nav { background: rgba(5,10,15,0.97); border-bottom-color: rgba(0,180,216,0.12); }
+.g-nav-logo { color: #e0e8f0; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+/* ── HERO ── */
+.research-hero {
+  min-height: 62vh; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 9rem 5rem 5rem;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid rgba(0,180,216,0.12);
+}
+.research-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 100% 0%, rgba(0,180,216,0.09) 0%, transparent 60%),
+    repeating-linear-gradient(90deg, rgba(0,180,216,0.03) 0px, rgba(0,180,216,0.03) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg, rgba(0,180,216,0.03) 0px, rgba(0,180,216,0.03) 1px, transparent 1px, transparent 80px);
+  pointer-events: none;
+}
+.breadcrumb {
+  font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both;
+}
+.breadcrumb a { color: var(--accent); text-decoration: none; transition: opacity 0.3s; }
+.breadcrumb a:hover { opacity: 0.7; }
+.breadcrumb span { opacity: 0.4; }
+.paper-category {
+  font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.1s;
+}
+.paper-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(1.8rem, 4.5vw, 3.5rem); font-weight: 700;
+  line-height: 1.1; color: #fff; max-width: 900px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.2s;
+}
+.paper-title .b { color: var(--accent); }
+.paper-subtitle {
+  font-family: 'Amiri', serif; font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: rgba(255,255,255,0.5); max-width: 780px; margin-top: 0.8rem;
+  font-style: italic; position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.28s;
+}
+.paper-meta {
+  display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+  margin-top: 2.5rem; position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.38s;
+}
+.meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.meta-label { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.meta-value { font-size: 0.92rem; color: rgba(255,255,255,0.75); }
+.meta-value .b { color: var(--accent); }
+.meta-sep { width: 1px; height: 36px; background: rgba(255,255,255,0.1); }
+.paper-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.5s;
+}
+.btn-accent {
+  background: var(--accent); color: #000;
+  padding: 0.85rem 2rem; border: 2px solid var(--accent);
+  font-family: 'Amiri', serif; font-size: 0.82rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; display: inline-block;
+}
+.btn-accent:hover { background: transparent; color: var(--accent); }
+.btn-accent-ghost {
+  background: transparent; color: var(--accent);
+  padding: 0.85rem 2rem; border: 2px solid rgba(0,180,216,0.35);
+  font-family: 'Amiri', serif; font-size: 0.82rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; display: inline-block;
+}
+.btn-accent-ghost:hover { background: var(--accent); color: #000; }
+
+/* ── BODY LAYOUT ── */
+.research-body {
+  max-width: 1200px; margin: 0 auto; padding: 6rem 5rem;
+  display: grid; grid-template-columns: 1fr 320px; gap: 5rem; align-items: start;
+}
+
+/* ── ABSTRACT ── */
+.paper-abstract {
+  background: rgba(0,180,216,0.05); border: 1px solid rgba(0,180,216,0.15);
+  border-left: 4px solid var(--accent); padding: 2.5rem; margin-bottom: 4rem;
+}
+.paper-abstract h3 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.2rem;
+}
+.paper-abstract p { font-size: 1rem; line-height: 1.9; color: rgba(255,255,255,0.6); }
+.paper-abstract p strong { color: rgba(255,255,255,0.9); }
+
+/* ── SECTION BLOCKS ── */
+.section-block { margin-bottom: 4rem; }
+.section-block h2 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.45rem; font-weight: 700; color: #fff;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0,180,216,0.12);
+}
+.section-block h2 .b { color: var(--accent); }
+.section-block p {
+  font-size: 1rem; line-height: 1.9; color: rgba(255,255,255,0.52);
+  margin-bottom: 1.2rem;
+}
+.section-block p strong { color: rgba(255,255,255,0.85); }
+.section-block p .b { color: var(--accent); }
+
+/* ── EQUATION BLOCK ── */
+.eq-block {
+  background: rgba(0,0,0,0.5); border: 1px solid rgba(0,180,216,0.18);
+  padding: 1.8rem 2.5rem; margin: 2rem 0; position: relative;
+}
+.eq-block .eq-label {
+  position: absolute; top: 0.8rem; right: 1.2rem;
+  font-size: 0.62rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.2);
+}
+.eq-block .eq-text {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.1rem; color: var(--accent); text-align: center; letter-spacing: 0.03em;
+}
+.eq-block .eq-desc {
+  font-size: 0.85rem; color: rgba(255,255,255,0.38);
+  text-align: center; margin-top: 0.7rem; line-height: 1.6;
+}
+
+/* ── KEY RESULTS GRID ── */
+.kr-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(0,180,216,0.1); margin: 2.5rem 0;
+}
+.kr-item {
+  background: var(--bg); padding: 2rem 1.8rem;
+  border-bottom: 3px solid transparent; transition: border-color 0.3s;
+}
+.kr-item:hover { border-color: var(--accent); }
+.kr-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1rem; font-weight: 700; color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+.kr-desc { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.42); }
+
+/* ── THREE PROBLEMS ── */
+.problems-grid {
+  display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2.5rem 0;
+}
+.problem-card {
+  background: rgba(0,180,216,0.04); border: 1px solid rgba(0,180,216,0.12);
+  padding: 2rem 2.2rem; position: relative;
+}
+.problem-card::before {
+  content: attr(data-num);
+  position: absolute; top: 1.5rem; right: 1.8rem;
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 2.5rem; font-weight: 700; color: rgba(0,180,216,0.08);
+  line-height: 1;
+}
+.problem-label {
+  font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.8rem; display: block;
+}
+.problem-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem;
+}
+.problem-body { font-size: 0.93rem; line-height: 1.75; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+.solution-label {
+  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: #4ade80; margin-bottom: 0.5rem; display: block;
+}
+.solution-body { font-size: 0.9rem; line-height: 1.7; color: rgba(74,222,128,0.7); }
+
+/* ── ARCH DIAGRAM ── */
+.arch-diagram {
+  background: rgba(0,0,0,0.4); border: 1px solid rgba(0,180,216,0.15);
+  padding: 2.5rem; margin: 2.5rem 0;
+}
+.arch-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-bottom: 0.5rem;
+}
+.arch-box {
+  background: rgba(0,180,216,0.08); border: 1px solid rgba(0,180,216,0.25);
+  padding: 0.6rem 1.2rem; font-size: 0.8rem; color: var(--accent);
+  font-family: 'Libre Baskerville', Georgia, serif; text-align: center;
+  min-width: 140px;
+}
+.arch-box.shared { background: rgba(0,180,216,0.18); border-color: var(--accent); color: #fff; }
+.arch-box.attn { background: rgba(124,58,237,0.12); border-color: rgba(124,58,237,0.4); color: #a78bfa; }
+.arch-box.ssm  { background: rgba(0,200,150,0.1);  border-color: rgba(0,200,150,0.4);  color: #4ade80; }
+.arch-arrow { color: rgba(255,255,255,0.2); font-size: 1.2rem; padding: 0 0.5rem; }
+.arch-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-align: center; margin-bottom: 0.4rem; }
+
+/* ── COMPARISON TABLE ── */
+.compare-table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+.compare-table th {
+  font-family: 'Amiri', serif; font-size: 0.68rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  padding: 0.8rem 1rem; border-bottom: 2px solid rgba(0,180,216,0.25); text-align: left;
+}
+.compare-table td {
+  font-size: 0.88rem; color: rgba(255,255,255,0.5);
+  padding: 0.85rem 1rem; border-bottom: 1px solid rgba(0,180,216,0.07);
+}
+.compare-table tr:hover td { background: rgba(0,180,216,0.04); }
+.compare-table td:first-child { color: rgba(255,255,255,0.75); }
+.compare-table .hl { color: var(--accent); font-weight: 700; }
+
+/* ── CITE BLOCK ── */
+.cite-block {
+  background: rgba(0,0,0,0.5); border: 1px solid rgba(0,180,216,0.12);
+  padding: 1.5rem 2rem; margin-top: 3rem;
+}
+.cite-block h4 {
+  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.cite-block pre {
+  font-family: 'Courier New', monospace; font-size: 0.78rem;
+  color: rgba(255,255,255,0.45); line-height: 1.75;
+  white-space: pre-wrap; word-break: break-word;
+}
+
+/* ── SIDEBAR ── */
+.toc {
+  background: rgba(0,180,216,0.05); border: 1px solid rgba(0,180,216,0.15);
+  padding: 2rem; position: sticky; top: 6rem;
+}
+.toc h4 {
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+}
+.toc ol { list-style: none; counter-reset: toc; display: flex; flex-direction: column; }
+.toc li { counter-increment: toc; }
+.toc li a {
+  display: flex; align-items: baseline; gap: 0.6rem;
+  font-size: 0.86rem; color: rgba(255,255,255,0.38);
+  text-decoration: none; padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,180,216,0.07); transition: color 0.3s;
+}
+.toc li a:hover { color: var(--accent); }
+.toc li a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-size: 0.62rem; color: var(--accent); flex-shrink: 0;
+}
+.paper-card {
+  background: rgba(0,180,216,0.05); border: 1px solid rgba(0,180,216,0.15);
+  padding: 2rem; margin-top: 2rem;
+}
+.paper-card h4 {
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+}
+.paper-card-row {
+  display: flex; flex-direction: column; gap: 0.3rem;
+  padding: 0.75rem 0; border-bottom: 1px solid rgba(0,180,216,0.08);
+}
+.paper-card-row:last-child { border-bottom: none; }
+.pcr-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+.pcr-value { font-size: 0.88rem; color: rgba(255,255,255,0.62); }
+.pcr-value .b { color: var(--accent); }
+
+/* ── RELATED PAPERS STRIP ── */
+.related { background: rgba(0,180,216,0.04); padding: 5rem; border-top: 1px solid rgba(0,180,216,0.1); }
+.related h3 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 2.5rem;
+}
+.related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(0,180,216,0.1); }
+.related-tile {
+  background: var(--bg); padding: 2.5rem 2rem;
+  text-decoration: none; display: block; transition: background 0.3s;
+  border-top: 3px solid transparent;
+}
+.related-tile:hover { background: rgba(0,180,216,0.05); border-color: var(--accent); }
+.rt-cat { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: block; }
+.rt-title { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1rem; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 0.7rem; }
+.rt-status { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+@media(max-width:1000px) {
+  .research-body { grid-template-columns:1fr; gap:3rem; padding:4rem 2rem; }
+  .research-hero { padding:8rem 2rem 4rem; }
+  .related { padding:4rem 2rem; }
+  .related-grid { grid-template-columns:1fr; }
+  .kr-grid { grid-template-columns:1fr; }
+  .toc { position:static; }
+}
+</style>
+</head>
+<body>
+
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">
+    Chip<span class="r">Deep</span>Sanaa<sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="index.html#products">Products</a></li>
+    <li><a href="index.html#technology">Technology</a></li>
+    <li><a href="research-transmamba.html">Research</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Partner</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="research-hero">
+  <div class="breadcrumb">
+    <a href="../../index.html">YEGOZCORP.™</a>
+    <span>›</span>
+    <a href="index.html">ChipDeepSanaa™</a>
+    <span>›</span>
+    <span style="color:rgba(255,255,255,0.5)">Research</span>
+  </div>
+  <p class="paper-category">Working Draft v1.0 &nbsp;·&nbsp; AI Architecture &nbsp;·&nbsp; Language Models &nbsp;·&nbsp; March 21, 2026</p>
+  <h1 class="paper-title"><span class="b">TransMamba-MoE:</span> A Sequence-Level Hybrid<br>Transformer–Mamba Architecture with Fine-Grained Mixture of Experts</h1>
+  <p class="paper-subtitle">Mathematical Foundations, Notation Derivation, and Resolution of Three Core Design Problems</p>
+  <div class="paper-meta">
+    <div class="meta-item">
+      <span class="meta-label">Author</span>
+      <span class="meta-value"><span class="b">Kiprop Yego</span> — Independent Research</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Date</span>
+      <span class="meta-value">March 21, 2026</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Subject</span>
+      <span class="meta-value">cs.LG · cs.AI · cs.CL</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Status</span>
+      <span class="meta-value" style="color:#4ade80">● Working Draft — Pre-Implementation</span>
+    </div>
+  </div>
+  <div class="paper-actions">
+    <a href="transmamba_moe.pdf" class="btn-accent" download>↓ Download PDF</a>
+    <a href="../asisianquantum/research.html" class="btn-accent-ghost">Also: Heptron Paper →</a>
+    <a href="index.html#contact" class="btn-accent-ghost">Collaborate →</a>
+  </div>
+</section>
+
+<!-- BODY -->
+<div class="research-body">
+<main>
+
+  <!-- ABSTRACT -->
+  <div class="paper-abstract reveal">
+    <h3>Abstract</h3>
+    <p>
+      <strong>TransMamba-MoE</strong> extends the TransMamba architecture [Li et al., AAAI 2026] — which partitions sequences between Transformer attention and Mamba SSM at a scheduled TransPoint — by incorporating a <strong>DeepSeekMoE-style fine-grained Mixture of Experts</strong> at three distinct sites within each layer: (i) the shared weight matrix pool (W-MoE), (ii) the SSM projection layers for Δ, A, and Z (SSM-MoE), and (iii) the feed-forward sublayer (FFN-MoE). We derive all notation from first principles, state and solve three core design problems at the intersection of MoE and TransMamba, and provide a complete <strong>implementation contract</strong> traceable to numbered equations and theorems.
+    </p>
+  </div>
+
+  <!-- KEY RESULTS -->
+  <div class="section-block reveal">
+    <h2>Key <span class="b">Contributions</span></h2>
+    <div class="kr-grid">
+      <div class="kr-item">
+        <div class="kr-title">Expert-Conditioned Memory Converter</div>
+        <div class="kr-desc">Derives the correct initialisation of the SSM hidden state when different attention-segment tokens use different expert weight matrices — a problem unsolved in prior work.</div>
+      </div>
+      <div class="kr-item">
+        <div class="kr-title">Mechanism-Aware Load Balancing</div>
+        <div class="kr-desc">Proves (Theorem 8.4) that segment-specific balancing coefficients αₐ, αₛ are strictly superior to any global coefficient — a new theoretical result.</div>
+      </div>
+      <div class="kr-item">
+        <div class="kr-title">Three-Component Stability Protocol</div>
+        <div class="kr-desc">Solves the coupled instability of TransPoint scheduling and MoE routing collapse simultaneously, with proven gradient variance bounds (Theorem 9.4).</div>
+      </div>
+      <div class="kr-item">
+        <div class="kr-title">Complete Implementation Contract</div>
+        <div class="kr-desc">Every design decision is traceable to a numbered equation. Section 12 provides unambiguous data structures, invariants, and hyperparameters for the coding phase.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div class="section-block reveal">
+    <h2>The <span class="b">TransMamba-MoE</span> Architecture</h2>
+    <p>TransMamba routes each layer's token sequence through two mechanisms split at a scheduled <strong>TransPoint P_ℓ</strong>: tokens before P_ℓ go through Transformer attention; tokens from P_ℓ onward go through a Mamba SSM recurrence. Both mechanisms share a single weight matrix W via the algebraic duality Q↔C, K↔B, V↔x.</p>
+    <p>TransMamba-MoE replaces this single W with a <strong>pool of expert matrices</strong> and introduces MoE at three sites:</p>
+
+    <div class="arch-diagram">
+      <div class="arch-label">Input H ∈ ℝᵀˣᵈ</div>
+      <div class="arch-row"><div class="arch-box shared">RMSNorm + Partition at P_ℓ</div></div>
+      <div class="arch-row" style="gap:2rem;margin:1rem 0">
+        <div>
+          <div class="arch-label">Tokens t &lt; P_ℓ</div>
+          <div class="arch-box attn">W-MoE Router</div>
+          <div class="arch-arrow" style="display:block;text-align:center">↓</div>
+          <div class="arch-box attn">Attention (Q, K, V via W*_t)</div>
+        </div>
+        <div style="display:flex;align-items:center;color:rgba(255,255,255,0.2);font-size:1.5rem">‖</div>
+        <div>
+          <div class="arch-label">Tokens t ≥ P_ℓ</div>
+          <div class="arch-box ssm">W-MoE Router (same Et)</div>
+          <div class="arch-arrow" style="display:block;text-align:center">↓</div>
+          <div class="arch-box ssm">SSM-MoE (Δ, A, Z experts)</div>
+        </div>
+      </div>
+      <div class="arch-row"><div class="arch-box shared">Expert-Conditioned Memory Converter h⁰ₛₛₘ</div></div>
+      <div class="arch-arrow" style="display:block;text-align:center;margin:0.5rem 0">↓</div>
+      <div class="arch-row"><div class="arch-box shared">Concatenate [yₛ ; yₗ] + Residual</div></div>
+      <div class="arch-arrow" style="display:block;text-align:center;margin:0.5rem 0">↓</div>
+      <div class="arch-row"><div class="arch-box shared">FFN-MoE Sublayer</div></div>
+    </div>
+  </div>
+
+  <!-- THREE PROBLEMS -->
+  <div class="section-block reveal">
+    <h2>Three Design <span class="b">Problems Solved</span></h2>
+    <p>The paper identifies and solves three fundamental design problems that arise when combining MoE routing with the TransMamba architecture:</p>
+
+    <div class="problems-grid">
+      <div class="problem-card" data-num="1">
+        <span class="problem-label">Design Problem 1</span>
+        <div class="problem-title">The Expert-Conditioned Memory Converter</div>
+        <p class="problem-body">The TransMamba Memory Converter initialises the SSM hidden state from the attention segment's K and V matrices. When different tokens use different expert weight matrices W*_t, which value of W* is valid for the initialisation? Inconsistent expert selection breaks the algebraic duality that TransMamba relies upon.</p>
+        <span class="solution-label">✓ Solution — Definition 7.2 + Theorem 7.3</span>
+        <p class="solution-body">Derive the Expert-Conditioned MCE: h⁰ₛₛₘ = base term + Σ correction terms Φ_t. Proven error bound ‖h*₀ − h^MCE₀‖_F ≤ C_δ Σ ‖R_t‖²_F ‖h^s_t‖². Requires zero additional learned parameters.</p>
+      </div>
+
+      <div class="problem-card" data-num="2">
+        <span class="problem-label">Design Problem 2</span>
+        <div class="problem-title">Mechanism-Aware Load Balancing</div>
+        <p class="problem-body">Standard MoE applies a single global load-balancing loss across all tokens. But in TransMamba-MoE, attention-segment tokens and SSM-segment tokens have structurally different representations — so a single global coefficient will either over-balance (suppressing natural specialisation) or under-balance (allowing expert collapse in one segment).</p>
+        <span class="solution-label">✓ Solution — Theorem 8.4</span>
+        <p class="solution-body">Segment-specific losses L^(a)_bal and L^(s)_bal with coefficients αₐ = α₀/ρ_ℓ, αₛ = α₀ρ_ℓ where ρ_ℓ = P_ℓ/(T−P_ℓ). Proven strictly superior to any global coefficient. Equal total gradient magnitude from each segment regardless of TransPoint.</p>
+      </div>
+
+      <div class="problem-card" data-num="3">
+        <span class="problem-label">Design Problem 3</span>
+        <div class="problem-title">Training Stability under Coupled Instability</div>
+        <p class="problem-body">TransMamba already has a fragile training regime (Table 6 of Li et al. 2026). MoE routing introduces expert collapse as a second instability. In TransMamba-MoE these are coupled: TransPoint changes shift the routing distribution, which can trigger expert collapse in the newly dominant segment.</p>
+        <span class="solution-label">✓ Solution — Three-Component Protocol (Theorem 9.4)</span>
+        <p class="solution-body">(1) Gradual TransPoint warm-up schedule. (2) Decaying router noise ε_t ~ N(0,σ²_noise) for collapse prevention. (3) Segment-decoupled gradient clipping. Proven: E[‖∇_ϕ L_total‖²] → η²_clip as r → ∞.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOTAL LOSS -->
+  <div class="section-block reveal">
+    <h2>The Training <span class="b">Loss</span></h2>
+    <p>The complete training objective combining all MoE balancing components:</p>
+    <div class="eq-block">
+      <span class="eq-label">Equation 53</span>
+      <div class="eq-text">L_total = L_CE + λₐ L^(a)_bal + λₛ L^(s)_bal + λ_sp L^(ssm-proj)_bal + λ_ffn L^(ffn)_bal</div>
+      <div class="eq-desc">where λₐ = α₀/ρ_ℓ, λₛ = α₀ρ_ℓ, and λ_sp, λ_ffn are set by grid search.</div>
+    </div>
+  </div>
+
+  <!-- VS BASELINE -->
+  <div class="section-block reveal">
+    <h2>TransMamba-MoE <span class="b">vs. Baseline</span></h2>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Property</th><th>TransMamba (baseline)</th><th>TransMamba-MoE (this work)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Shared weight matrix</td><td>Single W ∈ ℝᵈˣᵈ</td><td class="hl">Pool {W⁽ⁱ⁾} mNₑ experts</td></tr>
+        <tr><td>SSM projections Δ, A, Z</td><td>Single W_Δ, W_A, W_Z</td><td class="hl">SSM-MoE expert pools</td></tr>
+        <tr><td>FFN sublayer</td><td>Standard dense FFN</td><td class="hl">DeepSeekMoE fine-grained FFN</td></tr>
+        <tr><td>Memory Converter</td><td>Single-W initialisation</td><td class="hl">Expert-Conditioned MCE</td></tr>
+        <tr><td>Load balancing</td><td>N/A</td><td class="hl">Segment-specific αₐ ≠ αₛ</td></tr>
+        <tr><td>Active params per token</td><td>All params</td><td class="hl">(Nₛ + K) experts only</td></tr>
+        <tr><td>Expert specialisation</td><td>None</td><td class="hl">Per-mechanism + per-token</td></tr>
+        <tr><td>Training stability</td><td>Fragile (Li et al. Table 6)</td><td class="hl">Three-component protocol</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- IMPLEMENTATION -->
+  <div class="section-block reveal">
+    <h2>Implementation <span class="b">Contract</span></h2>
+    <p>The paper provides a complete, unambiguous implementation contract in Section 12. Every data structure, invariant, and hyperparameter is specified so the coding phase is a <strong>transcription of mathematics</strong>, not ad-hoc engineering.</p>
+    <p><strong>Key invariants:</strong> The <span class="b">Coupling Invariant (C1)</span> — the routing decision E_t used for attention projections Q, K, V must be identical to that used for SSM projections C, B, x for the same token. Violation breaks the MCE derivation. The <strong>Load Balancing Accumulation (C5)</strong> — segment-specific load statistics must be accumulated across the full batch before computing the loss, not per-token-averaged.</p>
+    <p><strong>Suggested first-run hyperparameters:</strong> 32 total experts (Ne=8, m=4), Ns=2 shared W-MoE experts, K=4 active routed, α₀=1×10⁻², R=2,000 warm-up steps, TransPoint schedule {0,128,256,512,1024,2048,4096,8192} cycled every 8 layers.</p>
+  </div>
+
+  <!-- CITE -->
+  <div class="cite-block reveal">
+    <h4>Cite This Work</h4>
+    <pre>Yego, K. (2026). TransMamba-MoE: A Sequence-Level Hybrid Transformer–Mamba Architecture
+with Fine-Grained Mixture of Experts [Working Draft v1.0].
+ChipDeepSanaa™ / YEGOZCORP.™ Independent Research. March 21, 2026.
+Retrieved from https://kigheart.github.io/YEGOZWEB/subsidiaries/chipdeepsanaa/research-transmamba.html</pre>
+  </div>
+
+</main>
+
+<!-- SIDEBAR -->
+<aside>
+  <div class="toc reveal">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#contributions">Key Contributions</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#problems">Three Problems Solved</a></li>
+      <li><a href="#loss">Training Loss</a></li>
+      <li><a href="#comparison">vs. Baseline</a></li>
+      <li><a href="#implementation">Implementation Contract</a></li>
+      <li><a href="#cite">How to Cite</a></li>
+    </ol>
+  </div>
+
+  <div class="paper-card reveal">
+    <h4>Paper Details</h4>
+    <div class="paper-card-row">
+      <span class="pcr-label">Author</span>
+      <span class="pcr-value"><span class="b">Kiprop Yego</span></span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">Affiliation</span>
+      <span class="pcr-value">ChipDeepSanaa™ / YEGOZCORP.™</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">Version</span>
+      <span class="pcr-value">Working Draft v1.0 — Pre-Implementation</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">Date</span>
+      <span class="pcr-value">March 21, 2026</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">arXiv</span>
+      <span class="pcr-value">Pending — cs.LG + cs.AI</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">Builds on</span>
+      <span class="pcr-value">TransMamba [Li et al., AAAI 2026]<br>DeepSeekMoE [Dai et al., 2024]</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">Pages</span>
+      <span class="pcr-value">24 pages, 3 tables, 1 algorithm</span>
+    </div>
+  </div>
+
+  <div class="paper-card reveal" style="margin-top:2rem">
+    <h4>Key Theorems</h4>
+    <div class="paper-card-row">
+      <span class="pcr-label">Theorem 7.3</span>
+      <span class="pcr-value" style="font-size:0.82rem;color:var(--accent)">MCE error bound — O(‖R_t‖²_F)</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">Theorem 8.4</span>
+      <span class="pcr-value" style="font-size:0.82rem;color:var(--accent)">Segment-wise balancing optimality</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">Theorem 9.4</span>
+      <span class="pcr-value" style="font-size:0.82rem;color:var(--accent)">Training stability — gradient variance bound</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="pcr-label">Algorithm 1</span>
+      <span class="pcr-value" style="font-size:0.82rem;color:var(--accent)">Complete forward pass — 24 steps</span>
+    </div>
+  </div>
+
+  <div class="paper-card reveal" style="margin-top:2rem">
+    <h4>Also from YEGOZCORP.™</h4>
+    <div class="paper-card-row">
+      <span class="pcr-label">ASISIANQUANTUM™</span>
+      <span class="pcr-value" style="font-size:0.82rem"><a href="../asisianquantum/research.html" style="color:var(--accent);text-decoration:none">Higher Order Quantum Capacitance & The Heptron →</a></span>
+    </div>
+  </div>
+</aside>
+</div>
+
+<!-- RELATED -->
+<section class="related">
+  <div style="max-width:1200px;margin:0 auto">
+    <h3>More from ChipDeepSanaa™</h3>
+    <div class="related-grid">
+      <a href="#" class="related-tile">
+        <span class="rt-cat">In Preparation · Systems</span>
+        <div class="rt-title">TransMamba-MoE: PyTorch Implementation & Benchmarks</div>
+        <span class="rt-status">Implementation phase — coming 2026</span>
+      </a>
+      <a href="#" class="related-tile">
+        <span class="rt-cat">In Preparation · Hardware</span>
+        <div class="rt-title">CDS-Axon™ Chiplet Architecture Specification</div>
+        <span class="rt-status">Coming Q3 2026</span>
+      </a>
+      <a href="index.html#contact" class="related-tile">
+        <span class="rt-cat">Collaboration</span>
+        <div class="rt-title">Interested in implementing TransMamba-MoE or co-authoring follow-on work?</div>
+        <span class="rt-status" style="color:var(--accent)">Get in touch →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand"><span class="logo">Chip<span class="r">Deep</span>Sanaa.™</span><p>AI architecture research and silicon design. A YEGOZCORP.™ subsidiary.</p></div>
+    <div class="g-footer-col"><h4>Research</h4><ul><li><a href="research-transmamba.html">TransMamba-MoE</a></li><li><a href="#">CDS-Axon™ Chiplet</a></li><li><a href="../asisianquantum/research.html">Heptron Paper</a></li></ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#products">Products</a></li><li><a href="index.html#contact">Contact</a></li><li><a href="../../index.html">YEGOZCORP.™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul><li><a href="../asisianquantum/index.html">ASISIANQUANTUM™</a></li><li><a href="../yegobio/index.html">YEGOBIO™</a></li><li><a href="../asaistudioz/index.html">asaiSTUDIOZ™</a></li></ul></div>
+  </div>
+  <div class="g-footer-bottom">
+    <span>© 2026 ChipDeepSanaa™ · YEGOZCORP.™ · All IP vested to YEGOZCORP.™</span>
+    <a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a>
+  </div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>
