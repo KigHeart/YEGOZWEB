@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PotGodz™ — Culture, Brand & Lifestyle · A YEGOZCORP Company</title>
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root { --accent: #ff6b00; --accent2: #ffd700; --bg: #060402; }
+body { background: var(--bg); color: #f5ede0; font-family: 'Amiri', Georgia, serif; }
+.g-nav { background: rgba(6,4,2,0.97); border-bottom-color: rgba(255,107,0,0.12); }
+.g-nav-logo { color: #f5ede0; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 9rem 2rem 6rem; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 40%, rgba(255,107,0,0.1) 0%, rgba(255,215,0,0.04) 40%, transparent 70%);
+  pointer-events: none;
+}
+.hero-pattern {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+  background-image: repeating-linear-gradient(45deg, #ff6b00 0, #ff6b00 1px, transparent 0, transparent 50%);
+  background-size: 20px 20px;
+}
+.hero-tag { font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.1s; }
+.hero-title { font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(5rem,15vw,14rem);font-weight:700;line-height:0.88;color:#fff;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.25s;letter-spacing:-0.02em; }
+.hero-title .o { color:var(--accent); }
+.hero-title .g2 { color:var(--accent2); }
+.hero-title sup { font-size:0.22em;font-weight:400; }
+.hero-sub { font-size:1.15rem;color:rgba(255,255,255,0.45);max-width:540px;line-height:1.85;margin:2.5rem auto 3.5rem;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.42s; }
+.hero-btns { display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.58s; }
+.btn-orange { background:var(--accent);color:#fff;padding:0.9rem 2.3rem;border:2px solid var(--accent);font-family:'Amiri',serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block; }
+.btn-orange:hover { background:transparent;color:var(--accent); }
+.btn-orange-ghost { background:transparent;color:var(--accent);padding:0.9rem 2.3rem;border:2px solid rgba(255,107,0,0.4);font-family:'Amiri',serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block; }
+.btn-orange-ghost:hover { background:var(--accent);color:#fff; }
+
+/* VALUES STRIP */
+.values-strip { background:var(--accent);padding:1.2rem 3rem;display:flex;justify-content:center;align-items:center;gap:3rem;flex-wrap:wrap; }
+.val-item { font-family:'Libre Baskerville',Georgia,serif;font-size:0.8rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#000; }
+.val-sep { width:4px;height:4px;background:#000;border-radius:50%;opacity:0.4; }
+
+section { padding:7rem 5rem;max-width:1200px;margin:0 auto; }
+.section-title { font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1.5rem; }
+.section-title .o { color:var(--accent); }
+.section-title .g2 { color:var(--accent2); }
+.body-text { font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.45);max-width:640px; }
+
+/* DROPS GRID */
+.drops-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem; }
+.drop-card { background:rgba(255,255,255,0.04);border:1px solid rgba(255,107,0,0.12);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:border-color 0.3s; }
+.drop-card:hover { border-color:rgba(255,107,0,0.4); }
+.drop-card::before { content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:var(--accent);opacity:0.07;clip-path:polygon(100% 0,0 0,100% 100%); }
+.drop-num { font-family:'Libre Baskerville',Georgia,serif;font-size:0.65rem;letter-spacing:0.2em;color:rgba(255,255,255,0.2);margin-bottom:2rem;display:block; }
+.drop-name { font-family:'Libre Baskerville',Georgia,serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:0.8rem; }
+.drop-name .o { color:var(--accent); }
+.drop-desc { font-size:0.93rem;line-height:1.75;color:rgba(255,255,255,0.38); }
+.drop-status { display:inline-block;margin-top:1.5rem;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(255,107,0,0.25);padding:0.25rem 0.7rem; }
+
+/* PILLARS */
+.pillars { display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:4rem; }
+.pillar { border-left:4px solid var(--accent);padding:2rem 2rem 2rem 2rem;background:rgba(255,107,0,0.04); }
+.pillar h4 { font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.7rem; }
+.pillar p { font-size:0.93rem;line-height:1.75;color:rgba(255,255,255,0.4); }
+
+.contact-form input,.contact-form textarea,.contact-form select { background:rgba(255,255,255,0.04);border-color:rgba(255,107,0,0.2);color:#f5ede0; }
+.contact-form input::placeholder,.contact-form textarea::placeholder { color:rgba(255,255,255,0.25); }
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus { border-color:var(--accent); }
+.contact-form select option { background:var(--bg); }
+
+@media(max-width:900px) { .hero{padding:8rem 2rem 5rem;} section{padding:5rem 2rem;} .drops-grid{grid-template-columns:1fr;} .pillars{grid-template-columns:1fr;} .values-strip{gap:1.5rem;} }
+</style>
+</head>
+<body>
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">
+    <span class="r">Pot</span>Godz<sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="#drops">Drops</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Connect</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="max-width:100%;padding:9rem 2rem 6rem">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <p class="hero-tag">A YEGOZCORP.™ Subsidiary · Culture & Brand Division</p>
+  <h1 class="hero-title"><span class="o">Pot</span><span class="g2">Godz</span><sup>™</sup></h1>
+  <p class="hero-sub">Where street culture meets intellectual daring. A brand born in Nairobi, speaking to a generation that refuses to be defined — only to define.</p>
+  <div class="hero-btns">
+    <a href="#drops" class="btn-orange">See the Drops</a>
+    <a href="#culture" class="btn-orange-ghost">Our Culture</a>
+  </div>
+</section>
+
+<div class="values-strip">
+  <span class="val-item">Authenticity</span>
+  <span class="val-sep"></span>
+  <span class="val-item">Identity</span>
+  <span class="val-sep"></span>
+  <span class="val-item">Nairobi</span>
+  <span class="val-sep"></span>
+  <span class="val-item">The World</span>
+  <span class="val-sep"></span>
+  <span class="val-item">No Apology</span>
+</div>
+
+<section id="drops">
+  <span class="section-label reveal">Product Drops</span>
+  <h2 class="section-title reveal">Limited. <span class="g2">Intentional.</span><br>Never Repeated.</h2>
+  <p class="body-text reveal">Every PotGodz™ drop is a cultural statement — apparel, objects, and experiences designed with the same obsession we apply to AI chips and quantum computers.</p>
+  <div class="drops-grid">
+    <div class="drop-card reveal"><span class="drop-num">Drop 001</span><div class="drop-name"><span class="o">Silicon</span> Savanah Collection</div><p class="drop-desc">Streetwear fusing East African textile traditions with tech-era iconography. Hand-screen-printed, limited to 200 units per colourway.</p><span class="drop-status">Sold Out</span></div>
+    <div class="drop-card reveal reveal-d1"><span class="drop-num">Drop 002</span><div class="drop-name">Quantum <span class="o">Gods</span> Capsule</div><p class="drop-desc">A 12-piece capsule collection exploring the visual language of quantum mechanics — superposition, entanglement, and interference — rendered in wearable form.</p><span class="drop-status">Coming Soon</span></div>
+    <div class="drop-card reveal reveal-d2"><span class="drop-num">Drop 003</span><div class="drop-name">YEGOZ <span class="o">Origin</span> Objects</div><p class="drop-desc">A curated collection of designed objects: ceramics, prints, and notebooks inspired by the intellectual legacy of YEGOZCORP.™ and its founder.</p><span class="drop-status">In Design</span></div>
+  </div>
+</section>
+
+<section id="culture" style="background:rgba(255,107,0,0.04);max-width:100%;padding:7rem 5rem">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-label reveal">Our Culture</span>
+    <h2 class="section-title reveal">Four Pillars of<br>the <span class="o">PotGodz</span> World</h2>
+    <p class="body-text reveal" style="margin-bottom:0">We don't make products. We make positions. Every piece, every event, every collaboration is a statement about who we are and where we're going.</p>
+    <div class="pillars">
+      <div class="pillar reveal"><h4>Street Intelligence</h4><p>The convergence of street culture and intellectual depth. Wearing ideas, not just fabric. Dressing like you've read the footnotes.</p></div>
+      <div class="pillar reveal reveal-d1"><h4>African Futurism</h4><p>Rooted in Nairobi, imagining futures that centre Africa not as a development story but as a design story — generative, not reactive.</p></div>
+      <div class="pillar reveal reveal-d2"><h4>Anti-Disposability</h4><p>In a world of fast fashion and faster culture, PotGodz™ makes things that last. Every drop is designed to be kept, not consumed.</p></div>
+      <div class="pillar reveal reveal-d3"><h4>Radical Collaboration</h4><p>We collaborate with artists, scientists, engineers, and rebels. The best work happens at the edges of categories, not inside them.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <span class="section-label reveal">About PotGodz™</span>
+  <h2 class="section-title reveal">Born in <span class="o">Nairobi.</span><br>Built for <span class="g2">Everywhere.</span></h2>
+  <p class="body-text reveal" style="margin-bottom:1.5rem">PotGodz™ began as an expression — a name Kiprop Yego scrawled in a notebook alongside quantum equations and chip architectures. It became a brand because it had to: the world needs proof that deep tech and street culture can occupy the same mind.</p>
+  <p class="body-text reveal">As a YEGOZCORP.™ subsidiary, PotGodz™ is the cultural arm of the enterprise — the part that reminds everyone that behind all the technology, there is a person with a voice, a vision, and a wardrobe.</p>
+  <div style="margin-top:2.5rem" class="reveal"><a href="../../index.html" class="btn-orange-ghost">← Back to YEGOZCORP.™</a></div>
+</section>
+
+<section id="contact" style="background:rgba(255,107,0,0.05);max-width:100%;padding:7rem 3rem">
+  <div style="max-width:660px;margin:0 auto;text-align:center">
+    <span class="section-label reveal">Connect</span>
+    <h2 class="section-title reveal" style="text-align:center">Collabs. <span class="o">Press.</span> Community.</h2>
+    <p class="body-text reveal" style="text-align:center;margin:0 auto 2.5rem">Designers, artists, stockists, and media — reach out.</p>
+    <form class="contact-form reveal">
+      <div class="form-row"><input type="text" placeholder="Name" required><input type="email" placeholder="Email" required></div>
+      <select><option value="" disabled selected>I'm interested in…</option><option>Collaboration</option><option>Stockist / Retail</option><option>Press & Media</option><option>Community</option><option>General</option></select>
+      <textarea placeholder="Message…"></textarea>
+      <button type="submit" class="btn-orange">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand"><span class="logo"><span class="r">Pot</span>Godz.™</span><p>Culture, brand, and lifestyle. A YEGOZCORP.™ subsidiary. All IP vested to YEGOZCORP.™</p></div>
+    <div class="g-footer-col"><h4>Collections</h4><ul><li><a href="#">Silicon Savanah</a></li><li><a href="#">Quantum Gods</a></li><li><a href="#">YEGOZ Origin</a></li></ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul><li><a href="#culture">Culture</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li><li><a href="../../index.html">YEGOZCORP.™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul><li><a href="../asaistudioz/index.html">asaiSTUDIOZ™</a></li><li><a href="../yegomedia/index.html">YEGOZMEDIA™</a></li><li><a href="../chipdeepsanaa/index.html">ChipDeepSanaa™</a></li></ul></div>
+  </div>
+  <div class="g-footer-bottom"><span>© 2024 PotGodz™ · YEGOZCORP.™</span><a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a></div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YEGOZCORP.™ — A Kiprop Yego Company</title>
+<meta name="description" content="YEGOZCORP.™ is the parent holding company for all Kiprop Yego's intellectual property ventures — spanning AI hardware, quantum computing, biotechnology, film & media, and creative arts.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 9rem 2rem 6rem; position: relative; overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-eyebrow {
+  font-size: 0.68rem; letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--light-gray); margin-bottom: 2.8rem;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.15s;
+}
+.hero-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(4.2rem, 12vw, 11rem);
+  font-weight: 700; line-height: 0.9; letter-spacing: -0.015em;
+  color: var(--black); position: relative; z-index: 1;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.3s;
+}
+.hero-title .r { color: var(--crimson); }
+.hero-title sup { font-size: 0.28em; vertical-align: super; font-weight: 400; }
+.hero-desc {
+  font-size: clamp(1rem, 2vw, 1.2rem); color: var(--gray);
+  max-width: 600px; line-height: 1.85; margin: 2.8rem auto 3.5rem;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.5s;
+}
+.hero-desc strong { color: var(--black); }
+.hero-desc .r { color: var(--crimson); font-style: italic; }
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.68s;
+}
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--light-gray); animation: fadeUp 1s ease both; animation-delay: 1s;
+}
+.hero-scroll-line {
+  width: 1px; height: 40px; background: linear-gradient(to bottom, var(--crimson), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50%       { opacity: 0.4; transform: scaleY(0.6); }
+}
+
+/* ── ABOUT ── */
+.about { padding: 9rem 3rem; max-width: 960px; margin: 0 auto; }
+.about-inner {
+  display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start;
+}
+.about-left .big-label {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(3rem, 5vw, 5rem); font-weight: 700;
+  line-height: 1; color: var(--black);
+}
+.about-left .big-label .r { color: var(--crimson); }
+.about-left p {
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--light-gray); margin-top: 1rem;
+}
+.about-right h2 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700;
+  line-height: 1.25; color: var(--black); margin-bottom: 1.5rem;
+}
+.about-right p {
+  font-size: 1.1rem; line-height: 1.9; color: var(--gray); margin-bottom: 1.2rem;
+}
+.about-right p strong { color: var(--black); }
+.about-right p .r { color: var(--crimson); font-style: italic; }
+.about-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem;
+}
+.stat-box { border-left: 3px solid var(--crimson); padding-left: 1.2rem; }
+.stat-box .num {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 2.2rem; font-weight: 700; color: var(--black); line-height: 1;
+}
+.stat-box .lbl {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--light-gray); margin-top: 0.4rem;
+}
+
+/* ── SUBSIDIARIES GRID ── */
+.subs-section { padding: 7rem 3rem; background: var(--black); }
+.subs-header { text-align: center; margin-bottom: 5rem; }
+.subs-header .section-label { color: rgba(191,0,65,0.9); }
+.subs-header h2 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+  color: var(--white); line-height: 1.15;
+}
+.subs-header p {
+  font-size: 1.05rem; color: rgba(255,255,255,0.45);
+  max-width: 560px; margin: 1.2rem auto 0; line-height: 1.8;
+}
+.subs-grid {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: rgba(255,255,255,0.07);
+}
+.sub-tile {
+  background: var(--black); padding: 3.5rem 2.8rem;
+  position: relative; overflow: hidden; text-decoration: none;
+  display: block; transition: background 0.4s;
+}
+.sub-tile::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--crimson);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s ease;
+}
+.sub-tile:hover { background: #111; }
+.sub-tile:hover::before { transform: scaleX(1); }
+.sub-tile-num {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 0.65rem; color: rgba(255,255,255,0.2);
+  letter-spacing: 0.2em; margin-bottom: 2.5rem; display: block;
+}
+.sub-tile-icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; }
+.sub-tile-name {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.35rem; font-weight: 700; color: var(--white);
+  line-height: 1.2; margin-bottom: 0.8rem;
+}
+.sub-tile-name .r { color: var(--crimson); }
+.sub-tile-name sup { font-size: 0.55em; font-weight: 400; }
+.sub-tile-sector {
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--crimson); margin-bottom: 1.2rem; display: block;
+}
+.sub-tile-desc {
+  font-size: 0.95rem; line-height: 1.75; color: rgba(255,255,255,0.42);
+}
+.sub-tile-arrow {
+  position: absolute; bottom: 2.5rem; right: 2.5rem;
+  font-size: 1.2rem; color: rgba(255,255,255,0.2);
+  transition: all 0.3s; transform: translate(0,0);
+}
+.sub-tile:hover .sub-tile-arrow {
+  color: var(--crimson); transform: translate(4px,-4px);
+}
+
+/* ── FOUNDER ── */
+.founder {
+  padding: 9rem 3rem; text-align: center;
+  position: relative; overflow: hidden;
+  background: var(--paper-dark);
+}
+.founder-quote-mark {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 18rem; line-height: 0.7; color: rgba(0,0,0,0.04);
+  position: absolute; top: 3rem; left: 50%; transform: translateX(-50%);
+  pointer-events: none; user-select: none;
+}
+.founder blockquote {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(1.3rem, 2.8vw, 2.1rem); font-style: italic;
+  line-height: 1.65; max-width: 840px; margin: 0 auto 3rem;
+  color: var(--black); position: relative; z-index: 1;
+}
+.founder blockquote .r { color: var(--crimson); }
+.founder-attr {
+  font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--crimson); position: relative; z-index: 1;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+  padding: 8rem 3rem;
+  max-width: 740px; margin: 0 auto; text-align: center;
+}
+.contact-section h2 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 1rem;
+}
+.contact-section > p {
+  font-size: 1.1rem; color: var(--gray); line-height: 1.8; margin-bottom: 3rem;
+}
+.contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%; padding: 0.95rem 1.1rem;
+  background: transparent; border: 1px solid rgba(0,0,0,0.18);
+  font-family: 'Amiri', serif; font-size: 1rem; color: var(--black);
+  outline: none; transition: border-color 0.3s; appearance: none; border-radius: 0;
+}
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus { border-color: var(--crimson); }
+.contact-form textarea { height: 130px; resize: vertical; }
+.contact-form button[type="submit"] {
+  align-self: center; cursor: pointer;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .subs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .subs-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="g-nav">
+  <a href="index.html" class="g-nav-logo">YEGOZ<span class="r">CORP</span>.™</a>
+  <ul class="g-nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#subsidiaries">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Invest</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <p class="hero-eyebrow">Nairobi, Kenya &nbsp;·&nbsp; Est. 2024 &nbsp;·&nbsp; All IP Vested</p>
+  <h1 class="hero-title">YEGOZ<span class="r">CORP</span><sup>™</sup></h1>
+  <p class="hero-desc">
+    The parent holding company for all <strong>Kiprop Yego's</strong> intellectual property.
+    From silicon to cinema, quantum to biology —
+    <span class="r">one vision, six frontiers.</span>
+  </p>
+  <div class="hero-btns">
+    <a href="#subsidiaries" class="btn btn-dark">Explore Portfolio</a>
+    <a href="#about" class="btn btn-ghost">Our Story</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Chip<span class="r">Deep</span>Sanaa™</span>
+    <span class="ticker-item">ASISIAN<span class="r">QUANTUM</span>™</span>
+    <span class="ticker-item"><span class="r">Pot</span>Godz™</span>
+    <span class="ticker-item">asai<span class="r">STUDIOZ</span>™</span>
+    <span class="ticker-item">YEGO<span class="r">BIO</span>™</span>
+    <span class="ticker-item">YEGOZ<span class="r">MEDIA</span>™</span>
+    <span class="ticker-item">AI &nbsp;·&nbsp; Quantum &nbsp;·&nbsp; Biotech &nbsp;·&nbsp; Film &nbsp;·&nbsp; Silicon &nbsp;·&nbsp; Culture</span>
+    <span class="ticker-item">Chip<span class="r">Deep</span>Sanaa™</span>
+    <span class="ticker-item">ASISIAN<span class="r">QUANTUM</span>™</span>
+    <span class="ticker-item"><span class="r">Pot</span>Godz™</span>
+    <span class="ticker-item">asai<span class="r">STUDIOZ</span>™</span>
+    <span class="ticker-item">YEGO<span class="r">BIO</span>™</span>
+    <span class="ticker-item">YEGOZ<span class="r">MEDIA</span>™</span>
+    <span class="ticker-item">AI &nbsp;·&nbsp; Quantum &nbsp;·&nbsp; Biotech &nbsp;·&nbsp; Film &nbsp;·&nbsp; Silicon &nbsp;·&nbsp; Culture</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <div class="big-label">All IP.<br>One<br><span class="r">Vision.</span></div>
+      <p>Kiprop Yego · Founder</p>
+    </div>
+    <div class="about-right">
+      <span class="section-label reveal">The Holding Company</span>
+      <h2 class="reveal">Building the companies that will shape the next century</h2>
+      <p class="reveal reveal-d1">
+        <span class="r">YEGOZCORP.™</span> is the parent company and sole IP holding entity for all ventures created by
+        <strong>Kiprop Yego</strong>. Every patent, every product, every brand — vested here, built for the future.
+      </p>
+      <p class="reveal reveal-d2">
+        Our portfolio spans the most consequential frontiers of this era: the silicon powering AI,
+        the algorithms driving quantum advantage, the biology rewriting human potential,
+        and the stories that make sense of it all.
+      </p>
+      <div class="about-stats">
+        <div class="stat-box reveal">
+          <div class="num">6</div>
+          <div class="lbl">Active Subsidiaries</div>
+        </div>
+        <div class="stat-box reveal reveal-d1">
+          <div class="num">100%</div>
+          <div class="lbl">IP Owned by YEGOZCORP</div>
+        </div>
+        <div class="stat-box reveal reveal-d2">
+          <div class="num">∞</div>
+          <div class="lbl">Sectors Impacted</div>
+        </div>
+        <div class="stat-box reveal reveal-d3">
+          <div class="num">KE</div>
+          <div class="lbl">African-Founded & Proud</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- SUBSIDIARIES -->
+<section class="subs-section" id="subsidiaries">
+  <div class="subs-header reveal">
+    <span class="section-label">The Portfolio</span>
+    <h2>Six Startups.<br>Six Frontiers.</h2>
+    <p>Each subsidiary operates independently, building world-class technology under the YEGOZCORP.™ umbrella.</p>
+  </div>
+
+  <div class="subs-grid">
+
+    <a href="subsidiaries/chipdeepsanaa/index.html" class="sub-tile reveal">
+      <span class="sub-tile-num">01</span>
+      <span class="sub-tile-icon">⬡</span>
+      <div class="sub-tile-name">Chip<span class="r">Deep</span>Sanaa<sup>™</sup></div>
+      <span class="sub-tile-sector">AI Hardware · Silicon · SoC</span>
+      <p class="sub-tile-desc">Designing the world's most advanced AI accelerator chiplets, system-on-chip architectures, and multi-die silicon for next-generation intelligence.</p>
+      <span class="sub-tile-arrow">↗</span>
+    </a>
+
+    <a href="subsidiaries/asisianquantum/index.html" class="sub-tile reveal reveal-d1">
+      <span class="sub-tile-num">02</span>
+      <span class="sub-tile-icon">◈</span>
+      <div class="sub-tile-name">ASISIAN<span class="r">QUANTUM</span><sup>™</sup></div>
+      <span class="sub-tile-sector">Quantum Computing · Algorithms</span>
+      <p class="sub-tile-desc">Pioneering quantum-classical hybrid architectures and post-classical algorithms that solve problems beyond the reach of any supercomputer.</p>
+      <span class="sub-tile-arrow">↗</span>
+    </a>
+
+    <a href="subsidiaries/yegobio/index.html" class="sub-tile reveal reveal-d2">
+      <span class="sub-tile-num">03</span>
+      <span class="sub-tile-icon">⬡</span>
+      <div class="sub-tile-name">YEGO<span class="r">BIO</span><sup>™</sup></div>
+      <span class="sub-tile-sector">Biotechnology · Genomics · MedTech</span>
+      <p class="sub-tile-desc">Engineering life at the molecular level — from CRISPR-based therapeutics to AI-driven drug discovery platforms targeting Africa's greatest health burdens.</p>
+      <span class="sub-tile-arrow">↗</span>
+    </a>
+
+    <a href="subsidiaries/asaistudioz/index.html" class="sub-tile reveal">
+      <span class="sub-tile-num">04</span>
+      <span class="sub-tile-icon">◻</span>
+      <div class="sub-tile-name">asai<span class="r">STUDIOZ</span><sup>™</sup></div>
+      <span class="sub-tile-sector">Film · Media · Content Creation</span>
+      <p class="sub-tile-desc">A full-spectrum creative studio producing feature films, documentary series, branded content, and immersive media experiences rooted in African narrative.</p>
+      <span class="sub-tile-arrow">↗</span>
+    </a>
+
+    <a href="subsidiaries/yegomedia/index.html" class="sub-tile reveal reveal-d1">
+      <span class="sub-tile-num">05</span>
+      <span class="sub-tile-icon">▣</span>
+      <div class="sub-tile-name">YEGOZ<span class="r">MEDIA</span><sup>™</sup></div>
+      <span class="sub-tile-sector">Digital Media · Distribution · IP</span>
+      <p class="sub-tile-desc">Building the infrastructure for next-generation media distribution — streaming, IP licensing, creator economy platforms, and AI-powered content tools.</p>
+      <span class="sub-tile-arrow">↗</span>
+    </a>
+
+    <a href="subsidiaries/potgodz/index.html" class="sub-tile reveal reveal-d2">
+      <span class="sub-tile-num">06</span>
+      <span class="sub-tile-icon">◆</span>
+      <div class="sub-tile-name"><span class="r">Pot</span>Godz<sup>™</sup></div>
+      <span class="sub-tile-sector">Culture · Brand · Lifestyle</span>
+      <p class="sub-tile-desc">A boundary-defying brand at the intersection of culture, identity, and creative expression. Rooted in the streets of Nairobi, built for the world.</p>
+      <span class="sub-tile-arrow">↗</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOUNDER QUOTE -->
+<section class="founder">
+  <div class="founder-quote-mark">"</div>
+  <blockquote class="reveal">
+    "From now on, all <span class="r">Kiprop Yego's</span> IP will be vested solely to YEGOZCORP.™ —
+    every idea, every company, every invention. One house. One legacy."
+  </blockquote>
+  <p class="founder-attr reveal">Kiprop Yego — Founder &amp; Visionary, YEGOZCORP.™</p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <span class="section-label reveal">Get In Touch</span>
+  <h2 class="reveal">Partnerships &amp; Investment</h2>
+  <p class="reveal">Interested in investing, partnering, or licensing IP across any of our verticals? We'd love to hear from you.</p>
+
+  <form class="contact-form reveal">
+    <div class="form-row">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+    </div>
+    <div class="form-row">
+      <input type="text" placeholder="Organisation / Company">
+      <select>
+        <option value="" disabled selected>Area of Interest</option>
+        <option>ChipDeepSanaa™ — AI Silicon</option>
+        <option>ASISIANQUANTUM™ — Quantum Computing</option>
+        <option>YEGOBIO™ — Biotechnology</option>
+        <option>asaiSTUDIOZ™ — Film & Media</option>
+        <option>YEGOZMEDIA™ — Digital Media</option>
+        <option>PotGodz™ — Culture & Brand</option>
+        <option>YEGOZCORP™ — Parent / General</option>
+      </select>
+    </div>
+    <textarea placeholder="Tell us about your interest…"></textarea>
+    <button type="submit" class="btn btn-dark">Send Message</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand">
+      <span class="logo">YEGOZ<span class="r">CORP</span>.™</span>
+      <p>The parent holding company for all Kiprop Yego's intellectual property ventures. All IP vested solely to YEGOZCORP.™</p>
+    </div>
+    <div class="g-footer-col">
+      <h4>Subsidiaries</h4>
+      <ul>
+        <li><a href="subsidiaries/chipdeepsanaa/index.html">ChipDeepSanaa™</a></li>
+        <li><a href="subsidiaries/asisianquantum/index.html">ASISIANQUANTUM™</a></li>
+        <li><a href="subsidiaries/yegobio/index.html">YEGOBIO™</a></li>
+        <li><a href="subsidiaries/asaistudioz/index.html">asaiSTUDIOZ™</a></li>
+        <li><a href="subsidiaries/yegomedia/index.html">YEGOZMEDIA™</a></li>
+        <li><a href="subsidiaries/potgodz/index.html">PotGodz™</a></li>
+      </ul>
+    </div>
+    <div class="g-footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#subsidiaries">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Invest</a></li>
+      </ul>
+    </div>
+    <div class="g-footer-col">
+      <h4>Sectors</h4>
+      <ul>
+        <li><a href="#">AI &amp; Hardware</a></li>
+        <li><a href="#">Quantum Computing</a></li>
+        <li><a href="#">Biotechnology</a></li>
+        <li><a href="#">Film &amp; Media</a></li>
+        <li><a href="#">Culture &amp; Brand</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="g-footer-bottom">
+    <span>© 2024 YEGOZCORP.™ — A Kiprop Yego Company. All Rights Reserved.</span>
+    <span>All IP vested solely to YEGOZCORP.™</span>
+    <a href="index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

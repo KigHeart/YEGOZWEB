@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChipDeepSanaa™ — AI Hardware & Silicon · A YEGOZCORP Company</title>
+<meta name="description" content="ChipDeepSanaa™ designs the world's most advanced AI accelerator chiplets, SoC, and multi-die architectures. A YEGOZCORP subsidiary.">
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root {
+  --accent: #00b4d8;
+  --accent-dark: #0077a8;
+  --bg-dark: #050a0f;
+}
+body { background: var(--bg-dark); color: #e0e8f0; }
+
+/* NAV override for dark */
+.g-nav { background: rgba(5,10,15,0.97); border-bottom-color: rgba(0,180,216,0.12); }
+.g-nav-logo { color: #e0e8f0; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 9rem 5rem 6rem; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 50%, rgba(0,180,216,0.07) 0%, transparent 70%),
+    repeating-linear-gradient(90deg, rgba(0,180,216,0.03) 0px, rgba(0,180,216,0.03) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(0deg, rgba(0,180,216,0.03) 0px, rgba(0,180,216,0.03) 1px, transparent 1px, transparent 60px);
+}
+.chip-visual {
+  position: absolute; right: 5rem; top: 50%; transform: translateY(-50%);
+  width: 380px; height: 380px; opacity: 0.12;
+  pointer-events: none;
+}
+.chip-visual svg { width: 100%; height: 100%; }
+.hero-tag {
+  font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 2rem;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.1s;
+}
+.hero-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 7rem); font-weight: 700;
+  line-height: 0.95; color: #fff; max-width: 700px;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.25s;
+}
+.hero-title .b { color: var(--accent); }
+.hero-title sup { font-size: 0.3em; font-weight: 400; }
+.hero-sub {
+  font-size: 1.1rem; color: rgba(255,255,255,0.5);
+  max-width: 500px; line-height: 1.85; margin: 2rem 0 3rem;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.42s;
+}
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.58s;
+}
+.btn-accent {
+  background: var(--accent); color: #000;
+  padding: 0.9rem 2.3rem; border: 2px solid var(--accent);
+  font-family: 'Amiri', serif; font-size: 0.85rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; display: inline-block;
+}
+.btn-accent:hover { background: transparent; color: var(--accent); }
+.btn-accent-ghost {
+  background: transparent; color: var(--accent);
+  padding: 0.9rem 2.3rem; border: 2px solid rgba(0,180,216,0.4);
+  font-family: 'Amiri', serif; font-size: 0.85rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; display: inline-block;
+}
+.btn-accent-ghost:hover { background: var(--accent); color: #000; }
+
+/* STATS BAR */
+.stats-bar {
+  background: rgba(0,180,216,0.07); border-top: 1px solid rgba(0,180,216,0.15);
+  border-bottom: 1px solid rgba(0,180,216,0.15);
+  padding: 2.5rem 5rem;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
+}
+.stat-item { text-align: center; }
+.stat-item .num {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 2.5rem; font-weight: 700; color: var(--accent); line-height: 1;
+}
+.stat-item .lbl {
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-top: 0.5rem;
+}
+
+/* SECTION */
+section { padding: 7rem 5rem; }
+.section-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700;
+  color: #fff; line-height: 1.15; margin-bottom: 1.5rem;
+}
+.section-title .b { color: var(--accent); }
+.body-text {
+  font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.5);
+  max-width: 640px;
+}
+
+/* PRODUCT CARDS */
+.products-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+  background: rgba(0,180,216,0.1); margin-top: 4rem;
+}
+.product-card {
+  background: var(--bg-dark); padding: 3rem 2.5rem;
+  border-top: 3px solid transparent; transition: border-color 0.3s;
+}
+.product-card:hover { border-color: var(--accent); }
+.prod-icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; }
+.prod-name {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem;
+}
+.prod-desc { font-size: 0.95rem; line-height: 1.75; color: rgba(255,255,255,0.4); }
+.prod-tag {
+  display: inline-block; margin-top: 1.2rem;
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid rgba(0,180,216,0.3); padding: 0.25rem 0.6rem;
+}
+
+/* TECH STACK */
+.tech-section { background: rgba(0,180,216,0.04); }
+.tech-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 1.5rem; margin-top: 3.5rem;
+}
+.tech-item {
+  border: 1px solid rgba(0,180,216,0.15); padding: 1.8rem 1.5rem; transition: border-color 0.3s;
+}
+.tech-item:hover { border-color: var(--accent); }
+.tech-item h4 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
+}
+.tech-item p { font-size: 0.88rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+/* CONTACT */
+.contact-form input, .contact-form textarea, .contact-form select {
+  background: rgba(255,255,255,0.04); border-color: rgba(0,180,216,0.2);
+  color: #e0e8f0;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.3); }
+.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { border-color: var(--accent); }
+.contact-form select option { background: #050a0f; }
+
+/* FOOTER */
+.g-footer { border-top: 1px solid rgba(0,180,216,0.12); }
+
+@media (max-width: 900px) {
+  .hero { padding: 8rem 2rem 5rem; }
+  section { padding: 5rem 2rem; }
+  .stats-bar { padding: 2rem; grid-template-columns: 1fr 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .chip-visual { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">
+    Chip<span class="r">Deep</span>Sanaa<sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Partner</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="chip-visual">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="100" y="100" width="200" height="200" stroke="#00b4d8" stroke-width="2"/>
+      <rect x="120" y="120" width="160" height="160" stroke="#00b4d8" stroke-width="1" stroke-dasharray="4 4"/>
+      <rect x="140" y="140" width="120" height="120" stroke="#00b4d8" stroke-width="1"/>
+      <rect x="160" y="160" width="80" height="80" fill="rgba(0,180,216,0.15)" stroke="#00b4d8" stroke-width="1"/>
+      <line x1="100" y1="150" x2="50" y2="150" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="100" y1="200" x2="50" y2="200" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="100" y1="250" x2="50" y2="250" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="300" y1="150" x2="350" y2="150" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="300" y1="200" x2="350" y2="200" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="300" y1="250" x2="350" y2="250" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="150" y1="100" x2="150" y2="50" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="200" y1="100" x2="200" y2="50" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="250" y1="100" x2="250" y2="50" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="150" y1="300" x2="150" y2="350" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="200" y1="300" x2="200" y2="350" stroke="#00b4d8" stroke-width="1.5"/>
+      <line x1="250" y1="300" x2="250" y2="350" stroke="#00b4d8" stroke-width="1.5"/>
+      <text x="200" y="208" text-anchor="middle" fill="#00b4d8" font-size="11" font-family="monospace">CDS·AI·v1</text>
+    </svg>
+  </div>
+  <p class="hero-tag">A YEGOZCORP.™ Subsidiary · AI Hardware Division</p>
+  <h1 class="hero-title">Chip<span class="b">Deep</span><br>Sanaa<sup>™</sup></h1>
+  <p class="hero-sub">Designing the silicon that powers the next generation of artificial intelligence. Advanced AI accelerator chiplets, SoC, and multi-die architectures — built in Africa, built for the world.</p>
+  <div class="hero-btns">
+    <a href="#products" class="btn-accent">Our Silicon</a>
+    <a href="#contact" class="btn-accent-ghost">Partner With Us</a>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item reveal"><div class="num">3nm</div><div class="lbl">Target Process Node</div></div>
+  <div class="stat-item reveal reveal-d1"><div class="num">8×</div><div class="lbl">AI Inference Speed vs GPU</div></div>
+  <div class="stat-item reveal reveal-d2"><div class="num">70%</div><div class="lbl">Power Efficiency Gain</div></div>
+  <div class="stat-item reveal reveal-d3"><div class="num">4</div><div class="lbl">Chiplet Architectures in Development</div></div>
+</div>
+
+<section id="products">
+  <span class="section-label reveal">Product Lines</span>
+  <h2 class="section-title reveal">Silicon Engineered<br>for <span class="b">Intelligence</span></h2>
+  <p class="body-text reveal">Every chip we design is purpose-built for AI workloads — from edge inference to data centre training — with unmatched power efficiency and raw compute density.</p>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <span class="prod-icon">⬡</span>
+      <div class="prod-name">CDS-Axon™ Chiplet</div>
+      <p class="prod-desc">A heterogeneous AI accelerator chiplet designed for high-bandwidth, low-latency inference. Compatible with standard chiplet interconnects (UCIe).</p>
+      <span class="prod-tag">Inference · Edge</span>
+    </div>
+    <div class="product-card reveal reveal-d1">
+      <span class="prod-icon">◈</span>
+      <div class="prod-name">CDS-Cortex™ SoC</div>
+      <p class="prod-desc">A full system-on-chip integrating AI accelerator cores, RISC-V host CPUs, HBM memory controllers, and PCIe 6.0 fabric in a single die.</p>
+      <span class="prod-tag">SoC · Data Centre</span>
+    </div>
+    <div class="product-card reveal reveal-d2">
+      <span class="prod-icon">▣</span>
+      <div class="prod-name">CDS-Synapse™ Multi-Die</div>
+      <p class="prod-desc">A multi-die package interconnecting up to 16 CDS-Axon chiplets with a proprietary high-bandwidth die-to-die fabric — delivering exaflop-class AI compute.</p>
+      <span class="prod-tag">Multi-Die · Training</span>
+    </div>
+  </div>
+</section>
+
+<section class="tech-section" id="technology">
+  <span class="section-label reveal">Deep Technology</span>
+  <h2 class="section-title reveal">Built on the <span class="b">Frontier</span></h2>
+  <p class="body-text reveal">Our engineering philosophy: ruthless specialisation. Every transistor, every interconnect, every memory hierarchy — optimised exclusively for AI.</p>
+  <div class="tech-grid">
+    <div class="tech-item reveal"><h4>Chiplet Architecture</h4><p>Modular die disaggregation with UCIe-compliant interfaces enabling mix-and-match silicon ecosystems.</p></div>
+    <div class="tech-item reveal reveal-d1"><h4>In-Memory Compute</h4><p>Processing-in-memory arrays that eliminate the von Neumann bottleneck for transformer attention workloads.</p></div>
+    <div class="tech-item reveal reveal-d2"><h4>Sparse Execution</h4><p>Hardware-native sparsity exploitation delivering 4× effective throughput on modern pruned neural networks.</p></div>
+    <div class="tech-item reveal reveal-d3"><h4>Thermal Design</h4><p>Advanced vapour chamber and micro-channel liquid cooling co-designed with the silicon for sustained TDP.</p></div>
+    <div class="tech-item reveal"><h4>RISC-V Host CPU</h4><p>Custom open-ISA host cores tightly coupled to AI accelerator fabric for ultra-low latency dispatching.</p></div>
+    <div class="tech-item reveal reveal-d1"><h4>Security Core</h4><p>Hardware root-of-trust, encrypted model weights at rest, and secure boot chains for edge deployments.</p></div>
+  </div>
+</section>
+
+<section id="about">
+  <div style="max-width:800px">
+    <span class="section-label reveal">About ChipDeepSanaa™</span>
+    <h2 class="section-title reveal">Africa's First <span class="b">AI Silicon</span> Startup</h2>
+    <p class="body-text reveal" style="margin-bottom:1.5rem">ChipDeepSanaa™ — meaning "deep craftsmanship" in Swahili — was born from the conviction that the continent that birthed humanity should also birth the hardware powering its AI future.</p>
+    <p class="body-text reveal">Founded under YEGOZCORP.™ by Kiprop Yego, we are building full-stack AI silicon capability in East Africa: from architecture and RTL design to physical implementation and packaging.</p>
+    <div style="margin-top:2.5rem" class="reveal">
+      <a href="../../index.html" class="btn-accent-ghost">← Back to YEGOZCORP.™</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background: rgba(0,180,216,0.04)">
+  <div style="max-width:660px; margin:0 auto; text-align:center">
+    <span class="section-label reveal">Partner With Us</span>
+    <h2 class="section-title reveal" style="text-align:center">Foundry. IP. <span class="b">Investment.</span></h2>
+    <p class="body-text reveal" style="margin: 0 auto 2.5rem; text-align:center">Whether you're a semiconductor foundry, system integrator, or investor — let's talk.</p>
+    <form class="contact-form reveal">
+      <div class="form-row">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+      </div>
+      <select><option value="" disabled selected>Enquiry Type</option><option>Foundry Partnership</option><option>IP Licensing</option><option>Investment</option><option>Technical Collaboration</option><option>General</option></select>
+      <textarea placeholder="Your message…"></textarea>
+      <button type="submit" class="btn-accent">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand">
+      <span class="logo">Chip<span class="r">Deep</span>Sanaa.™</span>
+      <p>AI accelerator silicon. A YEGOZCORP.™ subsidiary. All IP vested to YEGOZCORP.™</p>
+    </div>
+    <div class="g-footer-col"><h4>Products</h4><ul><li><a href="#">CDS-Axon™ Chiplet</a></li><li><a href="#">CDS-Cortex™ SoC</a></li><li><a href="#">CDS-Synapse™ Multi-Die</a></li></ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#technology">Technology</a></li><li><a href="#contact">Contact</a></li><li><a href="../../index.html">YEGOZCORP.™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul><li><a href="../asisianquantum/index.html">ASISIANQUANTUM™</a></li><li><a href="../yegobio/index.html">YEGOBIO™</a></li><li><a href="../asaistudioz/index.html">asaiSTUDIOZ™</a></li></ul></div>
+  </div>
+  <div class="g-footer-bottom">
+    <span>© 2024 ChipDeepSanaa™ · YEGOZCORP.™</span>
+    <a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

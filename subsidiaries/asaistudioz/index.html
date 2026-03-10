@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>asaiSTUDIOZ™ — Film, Media & Content · A YEGOZCORP Company</title>
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root { --accent: #e8a020; --bg: #080604; }
+body { background: var(--bg); color: #f0e8d8; }
+.g-nav { background: rgba(8,6,4,0.97); border-bottom-color: rgba(232,160,32,0.12); }
+.g-nav-logo { color: #f0e8d8; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 9rem 3rem 6rem; position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #0d0a06 0%, #080604 100%);
+}
+.hero-film-grain {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+.hero-tagline { font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.1s; }
+.hero-title { font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(3rem,10vw,9rem);font-weight:700;line-height:0.9;color:#fff;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.28s; }
+.hero-title .lo { font-style:italic;font-weight:400; }
+.hero-title .g { color:var(--accent); }
+.hero-title sup { font-size:0.28em;font-weight:400; }
+.hero-sub { font-size:1.15rem;color:rgba(255,255,255,0.45);max-width:560px;line-height:1.85;margin:2.2rem auto 3.5rem;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.44s; }
+.hero-btns { display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.6s; }
+.btn-gold { background:var(--accent);color:#000;padding:0.9rem 2.3rem;border:2px solid var(--accent);font-family:'Amiri',serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block; }
+.btn-gold:hover { background:transparent;color:var(--accent); }
+.btn-gold-ghost { background:transparent;color:var(--accent);padding:0.9rem 2.3rem;border:2px solid rgba(232,160,32,0.35);font-family:'Amiri',serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block; }
+.btn-gold-ghost:hover { background:var(--accent);color:#000; }
+
+.format-strip { display:flex;border-top:1px solid rgba(232,160,32,0.12);border-bottom:1px solid rgba(232,160,32,0.12);background:rgba(232,160,32,0.04); }
+.fmt-item { flex:1;padding:2.5rem 1.5rem;text-align:center;border-right:1px solid rgba(232,160,32,0.1); }
+.fmt-item:last-child { border-right:none; }
+.fmt-icon { font-size:1.8rem;display:block;margin-bottom:0.8rem; }
+.fmt-name { font-family:'Libre Baskerville',Georgia,serif;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.3rem; }
+.fmt-desc { font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.5; }
+
+section { padding:7rem 5rem;max-width:1200px;margin:0 auto; }
+.section-title { font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1.5rem; }
+.section-title .g { color:var(--accent); }
+.section-title em { font-style:italic; }
+.body-text { font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.45);max-width:640px; }
+
+.projects-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem; }
+.proj-card { background:rgba(255,255,255,0.03);border:1px solid rgba(232,160,32,0.1);padding:2.5rem 2rem;transition:border-color 0.3s; }
+.proj-card:hover { border-color:rgba(232,160,32,0.4); }
+.proj-type { font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:block; }
+.proj-title { font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-style:italic;font-weight:700;color:#fff;margin-bottom:0.8rem; }
+.proj-desc { font-size:0.92rem;line-height:1.7;color:rgba(255,255,255,0.38); }
+.proj-status { display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(232,160,32,0.25);padding:0.25rem 0.6rem; }
+
+.services-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(232,160,32,0.1);margin-top:4rem; }
+.srv-card { background:var(--bg);padding:2.8rem 2.2rem;transition:background 0.3s; }
+.srv-card:hover { background:rgba(232,160,32,0.05); }
+.srv-icon { font-size:1.8rem;margin-bottom:1.2rem;display:block; }
+.srv-name { font-family:'Libre Baskerville',Georgia,serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.7rem; }
+.srv-desc { font-size:0.9rem;line-height:1.7;color:rgba(255,255,255,0.37); }
+
+.contact-form input,.contact-form textarea,.contact-form select { background:rgba(255,255,255,0.04);border-color:rgba(232,160,32,0.2);color:#f0e8d8; }
+.contact-form input::placeholder,.contact-form textarea::placeholder { color:rgba(255,255,255,0.25); }
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus { border-color:var(--accent); }
+.contact-form select option { background:var(--bg); }
+
+@media(max-width:900px) { .hero{padding:8rem 2rem 5rem;} section{padding:5rem 2rem;} .projects-grid{grid-template-columns:1fr;} .format-strip{flex-wrap:wrap;} .fmt-item{min-width:50%;} }
+</style>
+</head>
+<body>
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">
+    <span style="font-style:italic;font-weight:400">asai</span><span class="r">STUDIOZ</span><sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Commission</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="max-width:100%;padding:9rem 3rem 6rem">
+  <div class="hero-film-grain"></div>
+  <p class="hero-tagline">A YEGOZCORP.™ Subsidiary · Creative Studio Division</p>
+  <h1 class="hero-title"><span class="lo">asai</span><span class="g">STUDIOZ</span><sup>™</sup></h1>
+  <p class="hero-sub">A full-spectrum African creative studio. Feature films, documentary series, branded content, and immersive experiences — rooted in African narrative, built for global audiences.</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-gold">Our Work</a>
+    <a href="#contact" class="btn-gold-ghost">Commission a Project</a>
+  </div>
+</section>
+
+<div class="format-strip">
+  <div class="fmt-item reveal"><span class="fmt-icon">🎬</span><div class="fmt-name">Feature Film</div><div class="fmt-desc">Long-form African cinema for global distribution</div></div>
+  <div class="fmt-item reveal reveal-d1"><span class="fmt-icon">📺</span><div class="fmt-name">Series & Documentary</div><div class="fmt-desc">Streaming-first serialised storytelling</div></div>
+  <div class="fmt-item reveal reveal-d2"><span class="fmt-icon">🎥</span><div class="fmt-name">Branded Content</div><div class="fmt-desc">Commercial and campaign production</div></div>
+  <div class="fmt-item reveal reveal-d3"><span class="fmt-icon">🌐</span><div class="fmt-name">Immersive & XR</div><div class="fmt-desc">VR, AR, and interactive narrative experiences</div></div>
+  <div class="fmt-item reveal"><span class="fmt-icon">🎵</span><div class="fmt-name">Music & Audio</div><div class="fmt-desc">Original scores, soundtracks, and audio IP</div></div>
+</div>
+
+<section id="projects">
+  <span class="section-label reveal">Selected Projects</span>
+  <h2 class="section-title reveal"><em>Stories</em> That<br>Demand <span class="g">Attention</span></h2>
+  <p class="body-text reveal">Every project we make is driven by the same conviction: African stories, told with African mastery, deserve the world's biggest stages.</p>
+  <div class="projects-grid">
+    <div class="proj-card reveal"><span class="proj-type">Feature Film</span><div class="proj-title">The Weight of Rain</div><p class="proj-desc">An epic drama set across three generations of a Kenyan farming family navigating colonialism, independence, and climate change.</p><span class="proj-status">In Development</span></div>
+    <div class="proj-card reveal reveal-d1"><span class="proj-type">Documentary Series · 6 Episodes</span><div class="proj-title">Quantum Africa</div><p class="proj-desc">A documentary series following the scientists, engineers, and dreamers building Africa's deep-tech future — from YEGOZCORP.™'s own labs outward.</p><span class="proj-status">In Production</span></div>
+    <div class="proj-card reveal reveal-d2"><span class="proj-type">Branded Content</span><div class="proj-title">Nairobi Futures</div><p class="proj-desc">A visually-driven branded content campaign celebrating Nairobi as East Africa's technology and creative capital.</p><span class="proj-status">Post-Production</span></div>
+    <div class="proj-card reveal"><span class="proj-type">Immersive XR</span><div class="proj-title">Rift Valley — VR Journey</div><p class="proj-desc">A 360° virtual reality journey through the cradle of humankind, combining cinematic storytelling with spatial audio and volumetric capture.</p><span class="proj-status">Delivered</span></div>
+    <div class="proj-card reveal reveal-d1"><span class="proj-type">Series · 10 Episodes</span><div class="proj-title">The Algorithm</div><p class="proj-desc">A sci-fi thriller following a Nairobi AI researcher who discovers a sentient pattern hidden inside YEGOZCORP.™'s quantum systems.</p><span class="proj-status">In Development</span></div>
+    <div class="proj-card reveal reveal-d2"><span class="proj-type">Music & Audio</span><div class="proj-title">Silicon Savanah — OST</div><p class="proj-desc">An original soundtrack fusing East African traditional instruments with electronic production, scored for the Quantum Africa documentary series.</p><span class="proj-status">Released</span></div>
+  </div>
+</section>
+
+<section id="services" style="background:rgba(232,160,32,0.04);max-width:100%;padding:7rem 5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <span class="section-label reveal">Studio Services</span>
+    <h2 class="section-title reveal">Full-Stack<br><span class="g">Creative Production</span></h2>
+    <p class="body-text reveal">From concept to distribution — we offer end-to-end creative production services to brands, broadcasters, and fellow storytellers.</p>
+    <div class="services-grid">
+      <div class="srv-card reveal"><span class="srv-icon">✍️</span><div class="srv-name">Development & Scripting</div><p class="srv-desc">Original IP development, adaptation rights, screenplay writing, and story consulting.</p></div>
+      <div class="srv-card reveal reveal-d1"><span class="srv-icon">🎬</span><div class="srv-name">Production</div><p class="srv-desc">Full-crew film and video production across Kenya and East Africa with world-class technical standards.</p></div>
+      <div class="srv-card reveal reveal-d2"><span class="srv-icon">✂️</span><div class="srv-name">Post-Production</div><p class="srv-desc">Editing, colour grading, VFX compositing, sound design, and DCP mastering for cinematic release.</p></div>
+      <div class="srv-card reveal reveal-d3"><span class="srv-icon">📡</span><div class="srv-name">Distribution</div><p class="srv-desc">Partnerships with African and global streaming platforms, festival strategy, and theatrical release coordination.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <span class="section-label reveal">About asaiSTUDIOZ™</span>
+  <h2 class="section-title reveal"><em>asai</em> — <span class="g">African Stories,</span><br>Infinite Imagination</h2>
+  <p class="body-text reveal" style="margin-bottom:1.5rem">asaiSTUDIOZ™ is YEGOZCORP's creative studio — the arm of the company dedicated to the art of storytelling. We believe technology and culture are inseparable, and the stories we tell today shape the world we build tomorrow.</p>
+  <p class="body-text reveal">Named with the Swahili-inflected syllable "asai" — a nod to the continent's oral storytelling roots — we are building an African creative institution with the ambition of a global studio.</p>
+  <div style="margin-top:2.5rem" class="reveal"><a href="../../index.html" class="btn-gold-ghost">← Back to YEGOZCORP.™</a></div>
+</section>
+
+<section id="contact" style="background:rgba(232,160,32,0.04);max-width:100%;padding:7rem 3rem">
+  <div style="max-width:660px;margin:0 auto;text-align:center">
+    <span class="section-label reveal">Commission</span>
+    <h2 class="section-title reveal" style="text-align:center">Let's Make <span class="g">Something.</span></h2>
+    <p class="body-text reveal" style="text-align:center;margin:0 auto 2.5rem">Brands, broadcasters, and fellow creatives — we'd love to collaborate.</p>
+    <form class="contact-form reveal">
+      <div class="form-row"><input type="text" placeholder="Name" required><input type="email" placeholder="Email" required></div>
+      <select><option value="" disabled selected>Project Type</option><option>Feature Film</option><option>Documentary / Series</option><option>Branded Content</option><option>Immersive / XR</option><option>Music & Audio</option><option>General Enquiry</option></select>
+      <textarea placeholder="Tell us about your project…"></textarea>
+      <button type="submit" class="btn-gold">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand"><span class="logo"><span style="font-style:italic;font-weight:400">asai</span><span class="r">STUDIOZ</span>.™</span><p>African creative studio. Film, media and content. A YEGOZCORP.™ subsidiary.</p></div>
+    <div class="g-footer-col"><h4>Formats</h4><ul><li><a href="#">Feature Film</a></li><li><a href="#">Series & Documentary</a></li><li><a href="#">Branded Content</a></li><li><a href="#">Immersive / XR</a></li></ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#contact">Contact</a></li><li><a href="../../index.html">YEGOZCORP.™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul><li><a href="../yegomedia/index.html">YEGOZMEDIA™</a></li><li><a href="../chipdeepsanaa/index.html">ChipDeepSanaa™</a></li><li><a href="../potgodz/index.html">PotGodz™</a></li></ul></div>
+  </div>
+  <div class="g-footer-bottom"><span>© 2024 asaiSTUDIOZ™ · YEGOZCORP.™</span><a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a></div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>

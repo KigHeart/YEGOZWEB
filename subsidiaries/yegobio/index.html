@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YEGOBIO™ — Biotechnology & Genomics · A YEGOZCORP Company</title>
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root { --accent: #00c896; --accent-dark: #008f69; --bg: #020c08; }
+body { background: var(--bg); color: #d0f0e8; }
+.g-nav { background: rgba(2,12,8,0.97); border-bottom-color: rgba(0,200,150,0.12); }
+.g-nav-logo { color: #d0f0e8; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: flex-end; align-items: flex-start;
+  padding: 9rem 5rem 6rem; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 80% at 80% 30%, rgba(0,200,150,0.1) 0%, transparent 60%);
+}
+.dna-lines {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+  background: repeating-linear-gradient(
+    -45deg, rgba(0,200,150,0.04) 0px, rgba(0,200,150,0.04) 1px,
+    transparent 1px, transparent 20px
+  );
+  pointer-events: none;
+}
+.hero-tag { font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.1s; }
+.hero-title { font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(3.5rem,10vw,9rem);font-weight:700;line-height:0.9;color:#fff;max-width:700px;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.28s; }
+.hero-title .g { color:var(--accent); }
+.hero-title sup { font-size:0.28em;font-weight:400; }
+.hero-sub { font-size:1.1rem;color:rgba(255,255,255,0.45);max-width:500px;line-height:1.85;margin:2rem 0 3rem;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.44s; }
+.hero-btns { display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.6s; }
+.btn-green { background:var(--accent);color:#000;padding:0.9rem 2.3rem;border:2px solid var(--accent);font-family:'Amiri',serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block; }
+.btn-green:hover { background:transparent;color:var(--accent); }
+.btn-green-ghost { background:transparent;color:var(--accent);padding:0.9rem 2.3rem;border:2px solid rgba(0,200,150,0.35);font-family:'Amiri',serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block; }
+.btn-green-ghost:hover { background:var(--accent);color:#000; }
+
+.stats-row { display:grid;grid-template-columns:repeat(4,1fr);background:rgba(0,200,150,0.06);border-top:1px solid rgba(0,200,150,0.15);border-bottom:1px solid rgba(0,200,150,0.15); }
+.s-item { padding:2.5rem 2rem;text-align:center;border-right:1px solid rgba(0,200,150,0.12); }
+.s-item:last-child { border-right:none; }
+.s-num { font-family:'Libre Baskerville',Georgia,serif;font-size:2.4rem;font-weight:700;color:var(--accent);line-height:1; }
+.s-lbl { font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.5rem; }
+
+section { padding:7rem 5rem;max-width:1200px;margin:0 auto; }
+.section-title { font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1.5rem; }
+.section-title .g { color:var(--accent); }
+.body-text { font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.45);max-width:640px; }
+
+.platforms-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(0,200,150,0.1);margin-top:4rem; }
+.platform-card { background:var(--bg);padding:3rem 2.5rem;border-bottom:3px solid transparent;transition:border-color 0.3s; }
+.platform-card:hover { border-color:var(--accent); }
+.p-icon { font-size:2rem;margin-bottom:1.5rem;display:block; }
+.p-name { font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:0.8rem; }
+.p-desc { font-size:0.93rem;line-height:1.75;color:rgba(255,255,255,0.38); }
+.p-tag { display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(0,200,150,0.25);padding:0.25rem 0.6rem; }
+
+.pipeline-section { background:rgba(0,200,150,0.04);max-width:100%;padding:7rem 5rem; }
+.pipeline-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(0,200,150,0.1);margin-top:4rem; }
+.pipe-step { background:var(--bg);padding:2.5rem 2rem;text-align:center; }
+.pipe-phase { font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;display:block; }
+.pipe-name { font-family:'Libre Baskerville',Georgia,serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.6rem; }
+.pipe-desc { font-size:0.88rem;line-height:1.6;color:rgba(255,255,255,0.35); }
+
+.contact-form input,.contact-form textarea,.contact-form select { background:rgba(255,255,255,0.04);border-color:rgba(0,200,150,0.2);color:#d0f0e8; }
+.contact-form input::placeholder,.contact-form textarea::placeholder { color:rgba(255,255,255,0.25); }
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus { border-color:var(--accent); }
+.contact-form select option { background:var(--bg); }
+
+@media(max-width:900px) { .hero{padding:8rem 2rem 5rem;} section{padding:5rem 2rem;} .platforms-grid{grid-template-columns:1fr;} .stats-row{grid-template-columns:1fr 1fr;} }
+</style>
+</head>
+<body>
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">YEGO<span class="r">BIO</span><sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#pipeline">Pipeline</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Partner</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="max-width:100%;padding:9rem 5rem 6rem">
+  <div class="hero-bg"></div>
+  <div class="dna-lines"></div>
+  <p class="hero-tag">A YEGOZCORP.™ Subsidiary · Biotechnology Division</p>
+  <h1 class="hero-title">YEGO<span class="g">BIO</span><sup>™</sup></h1>
+  <p class="hero-sub">Engineering life at the molecular level. From CRISPR-based gene therapies to AI-driven drug discovery — rewriting the future of human health, starting with Africa.</p>
+  <div class="hero-btns">
+    <a href="#platforms" class="btn-green">Our Platforms</a>
+    <a href="#contact" class="btn-green-ghost">Partner With Us</a>
+  </div>
+</section>
+
+<div class="stats-row">
+  <div class="s-item reveal"><div class="s-num">4</div><div class="s-lbl">Technology Platforms</div></div>
+  <div class="s-item reveal reveal-d1"><div class="s-num">12</div><div class="s-lbl">Target Disease Areas</div></div>
+  <div class="s-item reveal reveal-d2"><div class="s-num">AI+</div><div class="s-lbl">Drug Discovery Engine</div></div>
+  <div class="s-item reveal reveal-d3"><div class="s-num">AF</div><div class="s-lbl">Africa-First Mission</div></div>
+</div>
+
+<section id="platforms">
+  <span class="section-label reveal">Technology Platforms</span>
+  <h2 class="section-title reveal">Four Platforms.<br>One <span class="g">Mission.</span></h2>
+  <p class="body-text reveal">We build enabling technology platforms, not just individual drugs — tools that generate many therapies across many diseases.</p>
+  <div class="platforms-grid">
+    <div class="platform-card reveal"><span class="p-icon">🧬</span><div class="p-name">CRISPRx™ Gene Editing</div><p class="p-desc">Next-generation base editors and prime editors delivering precise, scarless genomic corrections with minimal off-target effects.</p><span class="p-tag">Gene Therapy · Base Editing</span></div>
+    <div class="platform-card reveal reveal-d1"><span class="p-icon">🤖</span><div class="p-name">AlphaMol™ AI Drug Discovery</div><p class="p-desc">Deep learning models trained on African genomic datasets to discover novel small molecule therapeutics for neglected tropical diseases.</p><span class="p-tag">AI · Drug Discovery · NTDs</span></div>
+    <div class="platform-card reveal reveal-d2"><span class="p-icon">🔬</span><div class="p-name">BioSynth™ Synthetic Biology</div><p class="p-desc">Engineered microbial cell factories producing biopharmaceuticals, biomaterials, and specialty chemicals at industrial scale.</p><span class="p-tag">Synthetic Biology · Bioprocess</span></div>
+  </div>
+</section>
+
+<section class="pipeline-section" id="pipeline" style="max-width:100%">
+  <div style="max-width:1200px;margin:0 auto">
+    <span class="section-label reveal">Development Pipeline</span>
+    <h2 class="section-title reveal">From Discovery<br>to <span class="g">Impact</span></h2>
+    <p class="body-text reveal">Our pipeline spans from early-stage target identification through to clinical-stage assets, with a focus on diseases that disproportionately affect African populations.</p>
+    <div class="pipeline-grid">
+      <div class="pipe-step reveal"><span class="pipe-phase">Stage 1</span><div class="pipe-name">Target ID</div><p class="pipe-desc">AI-powered target identification using African genomics cohorts</p></div>
+      <div class="pipe-step reveal reveal-d1"><span class="pipe-phase">Stage 2</span><div class="pipe-name">Hit Discovery</div><p class="pipe-desc">High-throughput screening and generative molecular design</p></div>
+      <div class="pipe-step reveal reveal-d2"><span class="pipe-phase">Stage 3</span><div class="pipe-name">Lead Optimisation</div><p class="pipe-desc">ADMET profiling and medicinal chemistry iteration</p></div>
+      <div class="pipe-step reveal reveal-d3"><span class="pipe-phase">Stage 4</span><div class="pipe-name">Preclinical</div><p class="pipe-desc">In vitro and in vivo efficacy and safety studies</p></div>
+      <div class="pipe-step reveal"><span class="pipe-phase">Stage 5</span><div class="pipe-name">Clinical Trials</div><p class="pipe-desc">Phase I–III trials with Africa-inclusive patient cohorts</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <span class="section-label reveal">About YEGOBIO™</span>
+  <h2 class="section-title reveal">Biotechnology <span class="g">Rooted in Africa</span></h2>
+  <p class="body-text reveal" style="margin-bottom:1.5rem">YEGOBIO™ was founded with a clear mandate: Africa carries the highest global disease burden, yet receives a fraction of global biotech investment. We are changing that.</p>
+  <p class="body-text reveal">By combining cutting-edge molecular biology with AI-native drug discovery and the world's most genetically diverse genomics datasets, we are building therapeutics that work for everyone — starting with those left behind.</p>
+  <div style="margin-top:2.5rem" class="reveal"><a href="../../index.html" class="btn-green-ghost">← Back to YEGOZCORP.™</a></div>
+</section>
+
+<section id="contact" style="background:rgba(0,200,150,0.04);max-width:100%;padding:7rem 3rem">
+  <div style="max-width:660px;margin:0 auto;text-align:center">
+    <span class="section-label reveal">Connect</span>
+    <h2 class="section-title reveal" style="text-align:center">Research. <span class="g">Capital.</span> Partnerships.</h2>
+    <p class="body-text reveal" style="text-align:center;margin:0 auto 2.5rem">Academic collaborators, pharma partners, and impact investors — reach out.</p>
+    <form class="contact-form reveal">
+      <div class="form-row"><input type="text" placeholder="Name" required><input type="email" placeholder="Email" required></div>
+      <select><option value="" disabled selected>Area of Interest</option><option>Research Collaboration</option><option>Clinical Partnership</option><option>Investment</option><option>Licensing</option><option>General</option></select>
+      <textarea placeholder="Message…"></textarea>
+      <button type="submit" class="btn-green">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand"><span class="logo">YEGO<span class="r">BIO</span>.™</span><p>Biotechnology and genomics for Africa and the world. A YEGOZCORP.™ subsidiary.</p></div>
+    <div class="g-footer-col"><h4>Platforms</h4><ul><li><a href="#">CRISPRx™</a></li><li><a href="#">AlphaMol™ AI</a></li><li><a href="#">BioSynth™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#contact">Contact</a></li><li><a href="../../index.html">YEGOZCORP.™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul><li><a href="../chipdeepsanaa/index.html">ChipDeepSanaa™</a></li><li><a href="../asisianquantum/index.html">ASISIANQUANTUM™</a></li><li><a href="../asaistudioz/index.html">asaiSTUDIOZ™</a></li></ul></div>
+  </div>
+  <div class="g-footer-bottom"><span>© 2024 YEGOBIO™ · YEGOZCORP.™</span><a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a></div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>

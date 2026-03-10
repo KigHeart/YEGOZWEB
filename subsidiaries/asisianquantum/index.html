@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASISIANQUANTUM™ — Quantum Computing · A YEGOZCORP Company</title>
+<meta name="description" content="ASISIANQUANTUM™ pioneers quantum-classical hybrid computing architectures solving problems beyond any supercomputer. A YEGOZCORP subsidiary.">
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root { --accent: #7c3aed; --accent-light: #a78bfa; --bg: #06020f; }
+body { background: var(--bg); color: #e8e0ff; }
+.g-nav { background: rgba(6,2,15,0.97); border-bottom-color: rgba(124,58,237,0.15); }
+.g-nav-logo { color: #e8e0ff; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 9rem 3rem 6rem; position: relative; overflow: hidden;
+}
+.hero-orb {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  animation: orbPulse 6s ease infinite;
+}
+.hero-orb2 {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 900px; height: 900px; border-radius: 50%;
+  border: 1px solid rgba(124,58,237,0.08);
+  pointer-events: none;
+}
+@keyframes orbPulse {
+  0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+  50%       { transform: translate(-50%,-50%) scale(1.08); opacity: 0.7; }
+}
+.hero-tag {
+  font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent-light); margin-bottom: 2rem; position: relative; z-index: 1;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.1s;
+}
+.hero-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(2.8rem, 8vw, 7.5rem); font-weight: 700;
+  line-height: 0.92; color: #fff; position: relative; z-index: 1;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.28s;
+}
+.hero-title .p { color: var(--accent-light); }
+.hero-title sup { font-size: 0.3em; font-weight: 400; }
+.hero-sub {
+  font-size: 1.1rem; color: rgba(255,255,255,0.45);
+  max-width: 560px; line-height: 1.85; margin: 2.2rem auto 3.5rem;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.44s;
+}
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.9s ease both; animation-delay: 0.6s;
+}
+.btn-purple {
+  background: var(--accent); color: #fff;
+  padding: 0.9rem 2.3rem; border: 2px solid var(--accent);
+  font-family: 'Amiri', serif; font-size: 0.85rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; display: inline-block;
+}
+.btn-purple:hover { background: transparent; color: var(--accent-light); }
+.btn-purple-ghost {
+  background: transparent; color: var(--accent-light);
+  padding: 0.9rem 2.3rem; border: 2px solid rgba(167,139,250,0.35);
+  font-family: 'Amiri', serif; font-size: 0.85rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; display: inline-block;
+}
+.btn-purple-ghost:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* QUBIT ROW */
+.qubit-row {
+  display: flex; justify-content: center; gap: 0; background: rgba(124,58,237,0.06);
+  border-top: 1px solid rgba(124,58,237,0.15); border-bottom: 1px solid rgba(124,58,237,0.15);
+}
+.qubit-stat {
+  flex: 1; padding: 2.5rem 2rem; text-align: center;
+  border-right: 1px solid rgba(124,58,237,0.15);
+}
+.qubit-stat:last-child { border-right: none; }
+.qubit-stat .num {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 2.4rem; font-weight: 700; color: var(--accent-light); line-height: 1;
+}
+.qubit-stat .lbl {
+  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-top: 0.5rem;
+}
+
+/* SECTIONS */
+section { padding: 7rem 4rem; max-width: 1200px; margin: 0 auto; }
+.wide-section { max-width: 100%; padding: 7rem 5rem; }
+.section-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700;
+  color: #fff; line-height: 1.15; margin-bottom: 1.5rem;
+}
+.section-title .p { color: var(--accent-light); }
+.body-text { font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.45); max-width: 640px; }
+
+/* RESEARCH AREAS */
+.research-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 1px; background: rgba(124,58,237,0.12); margin-top: 4rem;
+}
+.research-card {
+  background: var(--bg); padding: 3rem 2.5rem;
+  position: relative; transition: background 0.3s;
+}
+.research-card:hover { background: rgba(124,58,237,0.06); }
+.research-card::after {
+  content: ''; position: absolute; left: 0; top: 0;
+  width: 3px; height: 0; background: var(--accent);
+  transition: height 0.4s;
+}
+.research-card:hover::after { height: 100%; }
+.rc-num { font-family: 'Libre Baskerville', Georgia, serif; font-size: 0.65rem; color: rgba(255,255,255,0.2); letter-spacing: 0.2em; margin-bottom: 2rem; display: block; }
+.rc-title { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; }
+.rc-desc { font-size: 0.92rem; line-height: 1.75; color: rgba(255,255,255,0.38); }
+.rc-tag { display: inline-block; margin-top: 1.2rem; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-light); border: 1px solid rgba(167,139,250,0.25); padding: 0.25rem 0.6rem; }
+
+/* CONTACT */
+.contact-wrap { background: rgba(124,58,237,0.05); padding: 7rem 3rem; }
+.contact-form input, .contact-form textarea, .contact-form select {
+  background: rgba(255,255,255,0.04); border-color: rgba(124,58,237,0.25); color: #e8e0ff;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.25); }
+.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { border-color: var(--accent-light); }
+.contact-form select option { background: var(--bg); }
+
+@media(max-width:768px) {
+  section { padding: 5rem 1.5rem; }
+  .qubit-row { flex-wrap: wrap; }
+  .qubit-stat { min-width: 50%; }
+}
+</style>
+</head>
+<body>
+
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">
+    ASISIAN<span class="r">QUANTUM</span><sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Collaborate</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="max-width:100%; padding:9rem 3rem 6rem">
+  <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+  <p class="hero-tag">A YEGOZCORP.™ Subsidiary · Quantum Division</p>
+  <h1 class="hero-title">ASISIAN<br><span class="p">QUANTUM</span><sup>™</sup></h1>
+  <p class="hero-sub">Post-classical computing for post-classical problems. We build quantum-classical hybrid architectures that achieve quantum advantage on the problems that matter most.</p>
+  <div class="hero-btns">
+    <a href="#research" class="btn-purple">Research Areas</a>
+    <a href="#contact" class="btn-purple-ghost">Collaborate</a>
+  </div>
+</section>
+
+<div class="qubit-row">
+  <div class="qubit-stat reveal"><div class="num">1000+</div><div class="lbl">Logical Qubit Target</div></div>
+  <div class="qubit-stat reveal reveal-d1"><div class="num">10⁻⁴</div><div class="lbl">Error Rate Target</div></div>
+  <div class="qubit-stat reveal reveal-d2"><div class="num">6</div><div class="lbl">Research Workstreams</div></div>
+  <div class="qubit-stat reveal reveal-d3"><div class="num">∞</div><div class="lbl">Classical Intractable Problems</div></div>
+</div>
+
+<section id="research" style="max-width:100%; padding:7rem 5rem">
+  <span class="section-label reveal">Research Areas</span>
+  <h2 class="section-title reveal">Six Workstreams.<br>One <span class="p">Quantum Advantage.</span></h2>
+  <p class="body-text reveal">Our research is organised around the six pillars required to deliver real-world quantum utility.</p>
+  <div class="research-grid">
+    <div class="research-card reveal"><span class="rc-num">01</span><div class="rc-title">Quantum Error Correction</div><p class="rc-desc">Surface codes, color codes, and topological qubits to achieve fault-tolerant quantum computation at scale.</p><span class="rc-tag">QEC · Fault Tolerance</span></div>
+    <div class="research-card reveal reveal-d1"><span class="rc-num">02</span><div class="rc-title">Quantum Algorithms</div><p class="rc-desc">Variational quantum eigensolvers, QAOA, and HHL algorithm implementations for chemistry, logistics, and finance.</p><span class="rc-tag">VQE · QAOA · HHL</span></div>
+    <div class="research-card reveal reveal-d2"><span class="rc-num">03</span><div class="rc-title">Quantum-Classical Hybrid</div><p class="rc-desc">Seamless orchestration layers enabling quantum co-processors to offload specific subroutines from classical HPC clusters.</p><span class="rc-tag">Hybrid · HPC</span></div>
+    <div class="research-card reveal"><span class="rc-num">04</span><div class="rc-title">Quantum Machine Learning</div><p class="rc-desc">Quantum neural networks and kernel methods that exploit quantum entanglement for exponential feature space learning.</p><span class="rc-tag">QML · Kernels</span></div>
+    <div class="research-card reveal reveal-d1"><span class="rc-num">05</span><div class="rc-title">Quantum Cryptography</div><p class="rc-desc">Post-quantum cryptographic primitives and quantum key distribution protocols for the post-RSA era.</p><span class="rc-tag">PQC · QKD</span></div>
+    <div class="research-card reveal reveal-d2"><span class="rc-num">06</span><div class="rc-title">Quantum Sensing</div><p class="rc-desc">Nitrogen-vacancy centres and atomic interferometers for ultra-precise magnetic field, gravitational, and inertial sensing.</p><span class="rc-tag">NV · Interferometry</span></div>
+  </div>
+</section>
+
+<section id="technology">
+  <span class="section-label reveal">Our Platform</span>
+  <h2 class="section-title reveal">The <span class="p">ASISIAN</span> Stack</h2>
+  <p class="body-text reveal" style="margin-bottom:3rem">A full-stack quantum computing platform: from qubit fabrication and control electronics to cloud-accessible quantum APIs and algorithm libraries.</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem">
+    <div style="border:1px solid rgba(124,58,237,0.2); padding:2rem" class="reveal">
+      <h4 style="font-family:'Libre Baskerville',serif;color:#fff;margin-bottom:0.8rem">Hardware Layer</h4>
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.4);line-height:1.7">Superconducting transmon qubits operating at 15mK with custom cryo-CMOS control electronics. Targeting 1000 physical qubits by 2027.</p>
+    </div>
+    <div style="border:1px solid rgba(124,58,237,0.2); padding:2rem" class="reveal reveal-d1">
+      <h4 style="font-family:'Libre Baskerville',serif;color:#fff;margin-bottom:0.8rem">Software Stack</h4>
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.4);line-height:1.7">Open-source quantum SDK with Python bindings, quantum circuit compiler, noise-aware transpiler, and REST API for cloud quantum access.</p>
+    </div>
+    <div style="border:1px solid rgba(124,58,237,0.2); padding:2rem" class="reveal reveal-d2">
+      <h4 style="font-family:'Libre Baskerville',serif;color:#fff;margin-bottom:0.8rem">Algorithm Library</h4>
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.4);line-height:1.7">Curated collection of quantum algorithms optimised for near-term noisy devices (NISQ) across chemistry, optimisation, and ML domains.</p>
+    </div>
+    <div style="border:1px solid rgba(124,58,237,0.2); padding:2rem" class="reveal reveal-d3">
+      <h4 style="font-family:'Libre Baskerville',serif;color:#fff;margin-bottom:0.8rem">Cloud Access</h4>
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.4);line-height:1.7">Quantum-as-a-Service platform providing secure, authenticated access to ASISIAN quantum hardware for research and enterprise partners.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <span class="section-label reveal">About</span>
+  <h2 class="section-title reveal">Quantum for <span class="p">Africa</span> and Beyond</h2>
+  <p class="body-text reveal" style="margin-bottom:1.5rem">ASISIANQUANTUM™ was founded on the thesis that quantum computing will be the defining technology of the 21st century — and that Africa must have a seat at that table.</p>
+  <p class="body-text reveal">A YEGOZCORP.™ subsidiary, we combine deep quantum physics research with applied engineering to build machines that solve the unsolvable.</p>
+  <div style="margin-top:2.5rem" class="reveal"><a href="../../index.html" class="btn-purple-ghost">← Back to YEGOZCORP.™</a></div>
+</section>
+
+<div class="contact-wrap" id="contact">
+  <div style="max-width:660px;margin:0 auto;text-align:center">
+    <span class="section-label reveal">Collaborate</span>
+    <h2 class="section-title reveal" style="text-align:center">Research. <span class="p">Investment.</span> Access.</h2>
+    <p class="body-text reveal" style="text-align:center;margin:0 auto 2.5rem">Institutions, enterprises, and investors — reach us.</p>
+    <form class="contact-form reveal">
+      <div class="form-row">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+      </div>
+      <select><option value="" disabled selected>Enquiry Type</option><option>Research Collaboration</option><option>Cloud Access</option><option>Investment</option><option>Algorithm Licensing</option><option>General</option></select>
+      <textarea placeholder="Message…"></textarea>
+      <button type="submit" class="btn-purple">Send</button>
+    </form>
+  </div>
+</div>
+
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand"><span class="logo">ASISIAN<span class="r">QUANTUM</span>.™</span><p>Quantum computing research and platform. A YEGOZCORP.™ subsidiary.</p></div>
+    <div class="g-footer-col"><h4>Research</h4><ul><li><a href="#">Error Correction</a></li><li><a href="#">Quantum Algorithms</a></li><li><a href="#">QML</a></li><li><a href="#">Quantum Sensing</a></li></ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li><li><a href="../../index.html">YEGOZCORP.™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul><li><a href="../chipdeepsanaa/index.html">ChipDeepSanaa™</a></li><li><a href="../yegobio/index.html">YEGOBIO™</a></li><li><a href="../asaistudioz/index.html">asaiSTUDIOZ™</a></li></ul></div>
+  </div>
+  <div class="g-footer-bottom"><span>© 2024 ASISIANQUANTUM™ · YEGOZCORP.™</span><a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a></div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>

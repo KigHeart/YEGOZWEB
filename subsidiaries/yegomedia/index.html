@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YEGOZMEDIA™ — Digital Media & Distribution · A YEGOZCORP Company</title>
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root { --accent: #ff4d6d; --bg: #08030a; }
+body { background: var(--bg); color: #f0d8e8; }
+.g-nav { background: rgba(8,3,10,0.97); border-bottom-color: rgba(255,77,109,0.12); }
+.g-nav-logo { color: #f0d8e8; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 9rem 5rem 6rem; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 70% at 90% 50%, rgba(255,77,109,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 10% 80%, rgba(255,77,109,0.05) 0%, transparent 50%);
+}
+.hero-tag { font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.1s; }
+.hero-title { font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(3.5rem,10vw,9rem);font-weight:700;line-height:0.9;color:#fff;max-width:800px;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.28s; }
+.hero-title .r2 { color:var(--accent); }
+.hero-title sup { font-size:0.28em;font-weight:400; }
+.hero-sub { font-size:1.1rem;color:rgba(255,255,255,0.45);max-width:520px;line-height:1.85;margin:2rem 0 3rem;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.44s; }
+.hero-btns { display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:1;animation:fadeUp 0.9s ease both;animation-delay:0.6s; }
+.btn-red { background:var(--accent);color:#fff;padding:0.9rem 2.3rem;border:2px solid var(--accent);font-family:'Amiri',serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block; }
+.btn-red:hover { background:transparent;color:var(--accent); }
+.btn-red-ghost { background:transparent;color:var(--accent);padding:0.9rem 2.3rem;border:2px solid rgba(255,77,109,0.35);font-family:'Amiri',serif;font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;display:inline-block; }
+.btn-red-ghost:hover { background:var(--accent);color:#fff; }
+
+.metrics-row { display:grid;grid-template-columns:repeat(5,1fr);background:rgba(255,77,109,0.06);border-top:1px solid rgba(255,77,109,0.12);border-bottom:1px solid rgba(255,77,109,0.12); }
+.m-item { padding:2.2rem 1.5rem;text-align:center;border-right:1px solid rgba(255,77,109,0.1); }
+.m-item:last-child { border-right:none; }
+.m-num { font-family:'Libre Baskerville',Georgia,serif;font-size:2rem;font-weight:700;color:var(--accent);line-height:1; }
+.m-lbl { font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.5rem; }
+
+section { padding:7rem 5rem;max-width:1200px;margin:0 auto; }
+.section-title { font-family:'Libre Baskerville',Georgia,serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1.5rem; }
+.section-title .r2 { color:var(--accent); }
+.body-text { font-size:1.05rem;line-height:1.9;color:rgba(255,255,255,0.45);max-width:640px; }
+
+.products-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,77,109,0.1);margin-top:4rem; }
+.prod-card { background:var(--bg);padding:3rem 2.5rem;border-left:3px solid transparent;transition:border-color 0.3s; }
+.prod-card:hover { border-color:var(--accent); }
+.pd-icon { font-size:2rem;margin-bottom:1.5rem;display:block; }
+.pd-name { font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:0.8rem; }
+.pd-desc { font-size:0.93rem;line-height:1.75;color:rgba(255,255,255,0.38); }
+.pd-tag { display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(255,77,109,0.25);padding:0.25rem 0.6rem; }
+
+.contact-form input,.contact-form textarea,.contact-form select { background:rgba(255,255,255,0.04);border-color:rgba(255,77,109,0.2);color:#f0d8e8; }
+.contact-form input::placeholder,.contact-form textarea::placeholder { color:rgba(255,255,255,0.25); }
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus { border-color:var(--accent); }
+.contact-form select option { background:var(--bg); }
+
+@media(max-width:900px) { .hero{padding:8rem 2rem 5rem;} section{padding:5rem 2rem;} .products-grid{grid-template-columns:1fr;} .metrics-row{grid-template-columns:1fr 1fr;flex-wrap:wrap;} }
+</style>
+</head>
+<body>
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">
+    YEGOZ<span class="r">MEDIA</span><sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#distribution">Distribution</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Partner</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="max-width:100%;padding:9rem 5rem 6rem">
+  <div class="hero-bg"></div>
+  <p class="hero-tag">A YEGOZCORP.™ Subsidiary · Digital Media Division</p>
+  <h1 class="hero-title">YEGOZ<span class="r2">MEDIA</span><sup>™</sup></h1>
+  <p class="hero-sub">The infrastructure for African media in the streaming age. Distribution platforms, creator economy tools, IP licensing, and AI-powered content technology — all built for the creators of tomorrow.</p>
+  <div class="hero-btns">
+    <a href="#products" class="btn-red">Our Products</a>
+    <a href="#contact" class="btn-red-ghost">Become a Partner</a>
+  </div>
+</section>
+
+<div class="metrics-row">
+  <div class="m-item reveal"><div class="m-num">54</div><div class="m-lbl">African Countries Reached</div></div>
+  <div class="m-item reveal reveal-d1"><div class="m-num">3</div><div class="m-lbl">Distribution Platforms</div></div>
+  <div class="m-item reveal reveal-d2"><div class="m-num">AI</div><div class="m-lbl">Content Engine</div></div>
+  <div class="m-item reveal reveal-d3"><div class="m-num">∞</div><div class="m-lbl">Creator Partners</div></div>
+  <div class="m-item reveal"><div class="m-num">$0</div><div class="m-lbl">Creator Revenue Cut (Intro)</div></div>
+</div>
+
+<section id="products">
+  <span class="section-label reveal">Product Suite</span>
+  <h2 class="section-title reveal">The Media <span class="r2">Stack</span></h2>
+  <p class="body-text reveal">Three products, one mission: put African creators and their stories at the centre of the global media economy.</p>
+  <div class="products-grid">
+    <div class="prod-card reveal"><span class="pd-icon">📱</span><div class="pd-name">Asai+™ Streaming</div><p class="pd-desc">A curated streaming platform for African film and series, built on direct revenue-sharing with creators and zero algorithmic suppression of African content.</p><span class="pd-tag">Streaming · SVOD</span></div>
+    <div class="prod-card reveal reveal-d1"><span class="pd-icon">🎙️</span><div class="pd-name">CreatorOS™</div><p class="pd-desc">An all-in-one creator platform: video hosting, monetisation tools, audience analytics, subscription management, and brand partnership marketplace.</p><span class="pd-tag">Creator Economy · SaaS</span></div>
+    <div class="prod-card reveal reveal-d2"><span class="pd-icon">🤖</span><div class="pd-name">YegoAI™ Content Engine</div><p class="pd-desc">AI-powered tools for content localisation, auto-dubbing in 40 African languages, metadata generation, and recommendation algorithms trained on African taste.</p><span class="pd-tag">AI · Localisation · NLP</span></div>
+  </div>
+</section>
+
+<section id="distribution" style="background:rgba(255,77,109,0.04);max-width:100%;padding:7rem 5rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <span class="section-label reveal">Distribution Network</span>
+    <h2 class="section-title reveal">African Content,<br><span class="r2">Global Reach</span></h2>
+    <p class="body-text reveal" style="margin-bottom:3.5rem">YEGOZMEDIA™ operates a pan-African distribution network reaching audiences from Lagos to Nairobi to Cairo — and internationally through streaming partnerships.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(255,77,109,0.1)">
+      <div style="background:var(--bg);padding:2.5rem 2rem" class="reveal"><div style="font-size:1.8rem;margin-bottom:1rem">🌍</div><h4 style="font-family:'Libre Baskerville',serif;color:#fff;margin-bottom:0.6rem">East Africa</h4><p style="font-size:0.9rem;color:rgba(255,255,255,0.38);line-height:1.7">Kenya, Uganda, Tanzania, Rwanda — direct-to-consumer streaming and mobile-first distribution.</p></div>
+      <div style="background:var(--bg);padding:2.5rem 2rem" class="reveal reveal-d1"><div style="font-size:1.8rem;margin-bottom:1rem">🌍</div><h4 style="font-family:'Libre Baskerville',serif;color:#fff;margin-bottom:0.6rem">West Africa</h4><p style="font-size:0.9rem;color:rgba(255,255,255,0.38);line-height:1.7">Nigeria, Ghana, Senegal — Nollywood and Afrobeats crossover content distribution partnerships.</p></div>
+      <div style="background:var(--bg);padding:2.5rem 2rem" class="reveal reveal-d2"><div style="font-size:1.8rem;margin-bottom:1rem">🌐</div><h4 style="font-family:'Libre Baskerville',serif;color:#fff;margin-bottom:0.6rem">Diaspora</h4><p style="font-size:0.9rem;color:rgba(255,255,255,0.38);line-height:1.7">UK, US, Canada, France — serving the 40M+ African diaspora with premium homeland content.</p></div>
+      <div style="background:var(--bg);padding:2.5rem 2rem" class="reveal reveal-d3"><div style="font-size:1.8rem;margin-bottom:1rem">🏢</div><h4 style="font-family:'Libre Baskerville',serif;color:#fff;margin-bottom:0.6rem">B2B Licensing</h4><p style="font-size:0.9rem;color:rgba(255,255,255,0.38);line-height:1.7">IP licensing to global broadcasters and streamers seeking authentic African content slates.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <span class="section-label reveal">About YEGOZMEDIA™</span>
+  <h2 class="section-title reveal">The Media Company<br><span class="r2">Africa Deserves</span></h2>
+  <p class="body-text reveal" style="margin-bottom:1.5rem">YEGOZMEDIA™ was built on a simple observation: African creators are producing world-class content, but the infrastructure to monetise, distribute, and scale that content has always been owned by outsiders.</p>
+  <p class="body-text reveal">We are building that infrastructure — African-owned, African-designed, and aligned with creators rather than extracting from them.</p>
+  <div style="margin-top:2.5rem" class="reveal"><a href="../../index.html" class="btn-red-ghost">← Back to YEGOZCORP.™</a></div>
+</section>
+
+<section id="contact" style="background:rgba(255,77,109,0.04);max-width:100%;padding:7rem 3rem">
+  <div style="max-width:660px;margin:0 auto;text-align:center">
+    <span class="section-label reveal">Partner With Us</span>
+    <h2 class="section-title reveal" style="text-align:center">Creators. <span class="r2">Brands.</span> Investors.</h2>
+    <p class="body-text reveal" style="text-align:center;margin:0 auto 2.5rem">Whether you're a creator, broadcaster, brand or investor — let's talk.</p>
+    <form class="contact-form reveal">
+      <div class="form-row"><input type="text" placeholder="Name" required><input type="email" placeholder="Email" required></div>
+      <select><option value="" disabled selected>I am a…</option><option>Creator / Filmmaker</option><option>Brand / Advertiser</option><option>Broadcaster / Streamer</option><option>Investor</option><option>General Enquiry</option></select>
+      <textarea placeholder="Message…"></textarea>
+      <button type="submit" class="btn-red">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand"><span class="logo">YEGOZ<span class="r">MEDIA</span>.™</span><p>Digital media distribution and creator economy. A YEGOZCORP.™ subsidiary.</p></div>
+    <div class="g-footer-col"><h4>Products</h4><ul><li><a href="#">Asai+ Streaming</a></li><li><a href="#">CreatorOS™</a></li><li><a href="#">YegoAI™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#distribution">Distribution</a></li><li><a href="#contact">Contact</a></li><li><a href="../../index.html">YEGOZCORP.™</a></li></ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul><li><a href="../asaistudioz/index.html">asaiSTUDIOZ™</a></li><li><a href="../potgodz/index.html">PotGodz™</a></li><li><a href="../chipdeepsanaa/index.html">ChipDeepSanaa™</a></li></ul></div>
+  </div>
+  <div class="g-footer-bottom"><span>© 2024 YEGOZMEDIA™ · YEGOZCORP.™</span><a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a></div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>
