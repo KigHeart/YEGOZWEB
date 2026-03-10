@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — ASISIANQUANTUM™ · Higher Order Quantum Capacitance</title>
+<meta name="description" content="Original research from ASISIANQUANTUM™: Higher Order Quantum Capacitance and the Heptron — a Z7 parafermionic qudit device for topological quantum computing. By Kiprop Yego.">
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root { --accent: #7c3aed; --accent-light: #a78bfa; --bg: #06020f; }
+body { background: var(--bg); color: #e8e0ff; }
+.g-nav { background: rgba(6,2,15,0.97); border-bottom-color: rgba(124,58,237,0.15); }
+.g-nav-logo { color: #e8e0ff; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+/* ── HERO ── */
+.research-hero {
+  min-height: 60vh; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 9rem 5rem 5rem;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid rgba(124,58,237,0.15);
+}
+.research-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 100% 0%, rgba(124,58,237,0.1) 0%, transparent 60%),
+    repeating-linear-gradient(90deg, rgba(124,58,237,0.03) 0px, rgba(124,58,237,0.03) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg, rgba(124,58,237,0.03) 0px, rgba(124,58,237,0.03) 1px, transparent 1px, transparent 80px);
+  pointer-events: none;
+}
+.breadcrumb {
+  font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both;
+}
+.breadcrumb a { color: var(--accent-light); text-decoration: none; transition: opacity 0.3s; }
+.breadcrumb a:hover { opacity: 0.7; }
+.breadcrumb span { opacity: 0.4; }
+.paper-category {
+  font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent-light); margin-bottom: 1.5rem;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.1s;
+}
+.paper-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 4rem); font-weight: 700;
+  line-height: 1.1; color: #fff; max-width: 860px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.22s;
+}
+.paper-title .p { color: var(--accent-light); }
+.paper-meta {
+  display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+  margin-top: 2.5rem; position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.38s;
+}
+.meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.meta-label { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.meta-value { font-size: 0.92rem; color: rgba(255,255,255,0.75); }
+.meta-value .p { color: var(--accent-light); }
+.meta-sep { width: 1px; height: 36px; background: rgba(255,255,255,0.1); }
+.paper-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.5s;
+}
+.btn-purple {
+  background: var(--accent); color: #fff;
+  padding: 0.85rem 2rem; border: 2px solid var(--accent);
+  font-family: 'Amiri', serif; font-size: 0.82rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; display: inline-block;
+}
+.btn-purple:hover { background: transparent; color: var(--accent-light); }
+.btn-purple-ghost {
+  background: transparent; color: var(--accent-light);
+  padding: 0.85rem 2rem; border: 2px solid rgba(167,139,250,0.35);
+  font-family: 'Amiri', serif; font-size: 0.82rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; display: inline-block;
+}
+.btn-purple-ghost:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ── LAYOUT ── */
+.research-body {
+  max-width: 1200px; margin: 0 auto; padding: 6rem 5rem;
+  display: grid; grid-template-columns: 1fr 340px; gap: 5rem; align-items: start;
+}
+
+/* ── MAIN CONTENT ── */
+.paper-abstract {
+  background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.15);
+  border-left: 4px solid var(--accent); padding: 2.5rem;
+  margin-bottom: 4rem;
+}
+.paper-abstract h3 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--accent-light); margin-bottom: 1.2rem;
+}
+.paper-abstract p {
+  font-size: 1rem; line-height: 1.9; color: rgba(255,255,255,0.65);
+}
+
+.section-block { margin-bottom: 4rem; }
+.section-block h2 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.5rem; font-weight: 700; color: #fff;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(124,58,237,0.15);
+}
+.section-block h2 .p { color: var(--accent-light); }
+.section-block p {
+  font-size: 1rem; line-height: 1.9; color: rgba(255,255,255,0.55);
+  margin-bottom: 1.2rem;
+}
+.section-block p strong { color: rgba(255,255,255,0.85); }
+.section-block p .p { color: var(--accent-light); }
+
+/* EQUATION BLOCK */
+.eq-block {
+  background: rgba(0,0,0,0.4); border: 1px solid rgba(124,58,237,0.2);
+  padding: 2rem 2.5rem; margin: 2rem 0; position: relative;
+}
+.eq-block .eq-label {
+  position: absolute; top: 1rem; right: 1.2rem;
+  font-size: 0.65rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.25);
+}
+.eq-block .eq-text {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.2rem; color: var(--accent-light);
+  text-align: center; letter-spacing: 0.05em;
+}
+.eq-block .eq-desc {
+  font-size: 0.85rem; color: rgba(255,255,255,0.4);
+  text-align: center; margin-top: 0.8rem; line-height: 1.6;
+}
+
+/* COMPARISON TABLE */
+.compare-table {
+  width: 100%; border-collapse: collapse; margin: 2rem 0;
+}
+.compare-table th {
+  font-family: 'Amiri', serif; font-size: 0.68rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent-light); padding: 0.8rem 1.2rem;
+  border-bottom: 2px solid rgba(124,58,237,0.3);
+  text-align: left;
+}
+.compare-table td {
+  font-size: 0.92rem; color: rgba(255,255,255,0.55);
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid rgba(124,58,237,0.08);
+}
+.compare-table tr:hover td { background: rgba(124,58,237,0.05); }
+.compare-table td:first-child { color: rgba(255,255,255,0.75); font-weight: 700; }
+.compare-table .highlight { color: var(--accent-light); font-weight: 700; }
+
+/* KEY RESULTS */
+.key-results {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(124,58,237,0.12); margin: 2.5rem 0;
+}
+.kr-item {
+  background: var(--bg); padding: 2rem 1.8rem;
+  border-bottom: 3px solid transparent; transition: border-color 0.3s;
+}
+.kr-item:hover { border-color: var(--accent); }
+.kr-num {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 2rem; font-weight: 700; color: var(--accent-light); line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.kr-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.6rem; }
+.kr-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(255,255,255,0.4); }
+
+/* TOC */
+.toc {
+  background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.15);
+  padding: 2rem; position: sticky; top: 6rem;
+}
+.toc h4 {
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--accent-light); margin-bottom: 1.5rem;
+}
+.toc ol { list-style: none; counter-reset: toc; display: flex; flex-direction: column; gap: 0; }
+.toc li { counter-increment: toc; }
+.toc li a {
+  display: flex; align-items: baseline; gap: 0.6rem;
+  font-size: 0.88rem; color: rgba(255,255,255,0.4);
+  text-decoration: none; padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(124,58,237,0.08);
+  transition: color 0.3s;
+}
+.toc li a:hover { color: var(--accent-light); }
+.toc li a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-size: 0.65rem; color: var(--accent); flex-shrink: 0;
+  font-family: 'Libre Baskerville', serif;
+}
+
+/* PAPER CARD SIDEBAR */
+.paper-card {
+  background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.15);
+  padding: 2rem; margin-top: 2rem;
+}
+.paper-card h4 {
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--accent-light); margin-bottom: 1.5rem;
+}
+.paper-card-row {
+  display: flex; flex-direction: column; gap: 0.3rem;
+  padding: 0.8rem 0; border-bottom: 1px solid rgba(124,58,237,0.08);
+}
+.paper-card-row:last-child { border-bottom: none; }
+.pcr-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.pcr-value { font-size: 0.9rem; color: rgba(255,255,255,0.65); }
+.pcr-value .p { color: var(--accent-light); }
+
+/* CITE BLOCK */
+.cite-block {
+  background: rgba(0,0,0,0.5); border: 1px solid rgba(124,58,237,0.15);
+  padding: 1.5rem 2rem; margin-top: 3rem;
+}
+.cite-block h4 {
+  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--accent-light); margin-bottom: 1rem;
+}
+.cite-block pre {
+  font-family: 'Courier New', monospace; font-size: 0.8rem;
+  color: rgba(255,255,255,0.5); line-height: 1.7;
+  white-space: pre-wrap; word-break: break-word;
+}
+
+/* MORE PAPERS STRIP */
+.more-papers { background: rgba(124,58,237,0.04); padding: 5rem; border-top: 1px solid rgba(124,58,237,0.12); }
+.more-papers h3 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 2.5rem;
+}
+.papers-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(124,58,237,0.12); }
+.paper-tile {
+  background: var(--bg); padding: 2.5rem 2rem;
+  text-decoration: none; display: block; transition: background 0.3s;
+  border-top: 3px solid transparent; transition: all 0.3s;
+}
+.paper-tile:hover { background: rgba(124,58,237,0.06); border-color: var(--accent); }
+.pt-cat { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1rem; display: block; }
+.pt-title { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1rem; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 0.7rem; }
+.pt-status { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+@media (max-width: 1000px) {
+  .research-body { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+  .research-hero { padding: 8rem 2rem 4rem; }
+  .more-papers { padding: 4rem 2rem; }
+  .papers-row { grid-template-columns: 1fr; }
+  .key-results { grid-template-columns: 1fr; }
+  .toc { position: static; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">
+    ASISIAN<span class="r">QUANTUM</span><sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="index.html#technology">Technology</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Collaborate</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="research-hero">
+  <div class="breadcrumb">
+    <a href="../../index.html">YEGOZCORP.™</a>
+    <span>›</span>
+    <a href="index.html">ASISIANQUANTUM™</a>
+    <span>›</span>
+    <span style="color:rgba(255,255,255,0.5)">Research</span>
+  </div>
+  <p class="paper-category">Device Design Monograph &nbsp;·&nbsp; Topological Quantum Computing &nbsp;·&nbsp; Draft — 2026</p>
+  <h1 class="paper-title">Higher Order <span class="p">Quantum Capacitance</span><br>& The Heptron Architecture</h1>
+  <div class="paper-meta">
+    <div class="meta-item">
+      <span class="meta-label">Author</span>
+      <span class="meta-value"><span class="p">Kiprop Yego</span> — Independent Researcher</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Date</span>
+      <span class="meta-value">March 2, 2026</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Subject</span>
+      <span class="meta-value">quant-ph · cond-mat.mes-hall</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Status</span>
+      <span class="meta-value" style="color:#4ade80">● Pre-print / arXiv Submission</span>
+    </div>
+  </div>
+  <div class="paper-actions">
+    <a href="higher_order_quantum_capacitance.pdf" class="btn-purple" download>↓ Download PDF</a>
+    <a href="arxiv-submission.html" class="btn-purple-ghost">arXiv Submission →</a>
+    <a href="index.html#contact" class="btn-purple-ghost">Cite / Collaborate →</a>
+  </div>
+</section>
+
+<!-- BODY -->
+<div class="research-body">
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- ABSTRACT -->
+    <div class="paper-abstract reveal">
+      <h3>Abstract</h3>
+      <p>We present a comprehensive theoretical framework and device blueprint for a parafermionic Z₇ qudit — a seven-dimensional quantum information unit hosted in a topological quantum material engineered to support Z₇ clock-algebra zero modes. Starting from first principles of quantum materials science, we derive the <strong>higher-order quantum capacitance C⁽⁷⁾_Q</strong> of a Z₇ parafermionic island and show that it encodes a sevenfold degenerate ground state whose parity sectors are spectrally resolved through gate-voltage oscillations of period e/7. We develop a complete <strong>measurement-only topological quantum computing (MOTQC)</strong> architecture for the k = 7 case, generalising the Z₂ tetron device of Microsoft to a <strong>heptron</strong>: a hexagonal superconducting-topological hybrid island with six Z₇ parafermionic zero modes at its boundary. The full qudit Clifford group for d = 7 is generated by sequences of projective quantum-capacitance measurements, and we prove universality (up to magic-state injection) within this framework.</p>
+    </div>
+
+    <!-- KEY RESULTS -->
+    <div class="section-block reveal">
+      <h2>Key <span class="p">Results</span></h2>
+      <div class="key-results">
+        <div class="kr-item">
+          <div class="kr-num">4e²/49k_BT</div>
+          <div class="kr-label">Main Result</div>
+          <div class="kr-desc">The Higher-Order Quantum Capacitance C⁽⁷⁾_Q at the charge degeneracy point — the central formula of the paper.</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-num">2.807 ebits</div>
+          <div class="kr-label">Entanglement per measurement</div>
+          <div class="kr-desc">vs. 1 ebit for a standard qubit Bell pair. A 2.807× entanglement advantage per physical operation.</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-num">log₂7 ≈ 2.807</div>
+          <div class="kr-label">Logical qubits per heptron</div>
+          <div class="kr-desc">Each physical heptron device encodes 2.807 logical qubits — 40% more Hilbert space than a physical qubit.</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-num">~2.8×</div>
+          <div class="kr-label">Magic state distillation efficiency</div>
+          <div class="kr-desc">Overhead scaling for d=7 is ~2.8× smaller than d=2 — dramatically reducing the cost of fault-tolerant computation.</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-num">6</div>
+          <div class="kr-label">C_Q peaks per gate-voltage period</div>
+          <div class="kr-desc">vs. 1 peak for Majorana (Z₂). Each peak encodes a distinct Z₇ charge sector, enabling 7-outcome single-shot readout.</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-num">10.9%</div>
+          <div class="kr-label">Z₇ toric code error threshold</div>
+          <div class="kr-desc">vs. ~10.3% for d=2 surface code. The Z₇ architecture has a higher practical error threshold under depolarising noise.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE CENTRAL FORMULA -->
+    <div class="section-block reveal">
+      <h2>The Central <span class="p">Formula</span></h2>
+      <p>The paper's primary theoretical contribution is the derivation of the <strong>Higher-Order Quantum Capacitance</strong> for a Z_k parafermionic zero-mode pair. For a general k:</p>
+      <div class="eq-block">
+        <span class="eq-label">Theorem 3.1</span>
+        <div class="eq-text">C⁽ᵏ⁾_Q |_{μ=0} = e²(k²−1) / 12k²k_BT</div>
+        <div class="eq-desc">Quantum capacitance of a Z_k parafermionic zero-mode pair at the charge degeneracy point (μ = 0)</div>
+      </div>
+      <p>Specialising to <strong>k = 7</strong> (the heptron case):</p>
+      <div class="eq-block">
+        <span class="eq-label">Equation 25</span>
+        <div class="eq-text">C⁽⁷⁾_Q |_{μ=0} = 4e² / 49k_BT</div>
+        <div class="eq-desc">The higher-order quantum capacitance of the Z₇ parafermionic island at degeneracy. Compare: C⁽²⁾_Q = e²/16k_BT for Majorana (k=2).</div>
+      </div>
+      <p>This quantity — measurable via microwave reflectometry — exhibits <strong>six peaks per gate-voltage period e</strong>, with each peak encoding a distinct Z₇ charge sector m ∈ {0,…,6}. The sevenfold degeneracy is the operational primitive of the entire MOTQC architecture.</p>
+    </div>
+
+    <!-- THE HEPTRON -->
+    <div class="section-block reveal">
+      <h2>The <span class="p">Heptron</span> Device</h2>
+      <p>The heptron is a <strong>hexagonal superconducting island</strong> with six Z₇ parafermionic zero modes at its boundary — a direct generalisation of Microsoft's tetron (Z₂, 4 Majorana modes) to k = 7 (6 parafermionic modes). The hexagonal geometry is chosen because it supports six boundary modes under C₆ rotational symmetry, forming three commuting pairs that each span an independent Z₇ register.</p>
+      <p>The total zero-mode Hilbert space of the heptron is:</p>
+      <div class="eq-block">
+        <span class="eq-label">Equation — Hilbert Space</span>
+        <div class="eq-text">H₀ = C⁷ ⊗ C⁷ ⊗ C⁷ ≅ C³⁴³</div>
+        <div class="eq-desc">343-dimensional zero-mode Hilbert space per heptron device, with three independent Z₇ qudit registers.</div>
+      </div>
+      <p>All logical operations — including the full <strong>d=7 Clifford group</strong>, the quantum Fourier transform F₇, and the two-qudit SUM gate — are implemented entirely through sequences of projective C⁽⁷⁾_Q measurements. No physical qubit rotations are required. This is the measurement-only paradigm, inherited and extended from the tetron architecture.</p>
+    </div>
+
+    <!-- COMPARISON -->
+    <div class="section-block reveal">
+      <h2>Heptron vs <span class="p">Tetron</span></h2>
+      <p>A direct comparison of the heptron (this work) against Microsoft's tetron establishes the computational advantage at every level:</p>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Tetron (k=2, Z₂)</th>
+            <th>Heptron (k=7, Z₇)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Zero-mode algebra</td><td>γ² = 1 (Majorana)</td><td class="highlight">α⁷ = 1 (Parafermion)</td></tr>
+          <tr><td>Fractional charge</td><td>e/2</td><td class="highlight">e/7</td></tr>
+          <tr><td>Hilbert space per unit</td><td>C² (qubit)</td><td class="highlight">C⁷ (qudit)</td></tr>
+          <tr><td>Zero modes per device</td><td>4</td><td class="highlight">6</td></tr>
+          <tr><td>C_Q at degeneracy</td><td>e²/16k_BT</td><td class="highlight">4e²/49k_BT</td></tr>
+          <tr><td>C_Q peaks per period</td><td>1</td><td class="highlight">6</td></tr>
+          <tr><td>Bell pair entanglement</td><td>1 ebit</td><td class="highlight">2.807 ebits</td></tr>
+          <tr><td>Magic state overhead</td><td>Baseline</td><td class="highlight">~2.8× smaller</td></tr>
+          <tr><td>Logical qubits per device</td><td>1</td><td class="highlight">log₂7 ≈ 2.807</td></tr>
+          <tr><td>Error threshold (toric code)</td><td>~10.3%</td><td class="highlight">~10.9%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MATERIALS -->
+    <div class="section-block reveal">
+      <h2>Materials <span class="p">Platforms</span></h2>
+      <p>Realising Z₇ parafermionic zero modes requires engineering the <strong>ν = 1/7 fractional quantum Hall state</strong> proximitised by a superconductor. The paper identifies four candidate materials platforms:</p>
+      <p><strong>GaAs/AlGaAs 2DEG</strong> — The ν = 1/7 Laughlin state has been observed in ultrahigh-mobility GaAs heterostructures. Proximity coupling to Nb or NbN is the most technically mature route, operating below 100 mK.</p>
+      <p><strong>Graphene on hBN</strong> — The second Landau level of graphene on hexagonal boron nitride can host ν = 1/7 states at higher temperatures (100–300 mK) with Pb or MoRe superconductors.</p>
+      <p><strong>Fractional Topological Insulator edge</strong> — Theoretically the most promising platform: a 3D topological insulator surface doped to ν = 1/7, whose edge modes mimic a FQH edge while potentially accessible above 1 K — dramatically relaxing dilution refrigerator requirements.</p>
+      <p>Key engineering targets derived in the paper: topological gap Δ_topo > 50 μeV, charging energy E_C > 500 μeV, quasiparticle poisoning rate Γ_QP < 1/τ_gate.</p>
+    </div>
+
+    <!-- CITE -->
+    <div class="cite-block reveal">
+      <h4>Cite This Work</h4>
+      <pre>Yego, K. (2026). Higher Order Quantum Capacitance [Draft — Device Design Monograph].
+ASISIANQUANTUM™ / YEGOZCORP.™ Independent Research.
+Retrieved from https://kigheart.github.io/YEGOZWEB/subsidiaries/asisianquantum/research.html</pre>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside>
+
+    <!-- TOC -->
+    <div class="toc reveal">
+      <h4>Contents</h4>
+      <ol>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#key-results">Key Results</a></li>
+        <li><a href="#formula">The Central Formula</a></li>
+        <li><a href="#heptron">The Heptron Device</a></li>
+        <li><a href="#comparison">Heptron vs Tetron</a></li>
+        <li><a href="#materials">Materials Platforms</a></li>
+        <li><a href="#cite">How to Cite</a></li>
+      </ol>
+    </div>
+
+    <!-- PAPER DETAILS -->
+    <div class="paper-card reveal">
+      <h4>Paper Details</h4>
+      <div class="paper-card-row">
+        <span class="pcr-label">Author</span>
+        <span class="pcr-value"><span class="p">Kiprop Yego</span></span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">Affiliation</span>
+        <span class="pcr-value">ASISIANQUANTUM™ / YEGOZCORP.™</span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">Submitted</span>
+        <span class="pcr-value">March 2, 2026</span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">arXiv ID</span>
+        <span class="pcr-value">Pending submission</span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">Subject Class</span>
+        <span class="pcr-value">quant-ph<br>cond-mat.mes-hall<br>cond-mat.str-el</span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">Pages</span>
+        <span class="pcr-value">18 pages, 2 tables, 1 figure</span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">MSC Classes</span>
+        <span class="pcr-value">81P68 · 82D55 · 81V70</span>
+      </div>
+    </div>
+
+    <!-- KEY EQUATIONS SIDEBAR -->
+    <div class="paper-card reveal" style="margin-top:2rem">
+      <h4>Key Equations</h4>
+      <div class="paper-card-row">
+        <span class="pcr-label">Main Result</span>
+        <span class="pcr-value" style="font-family:'Libre Baskerville',serif;color:var(--accent-light)">C⁽⁷⁾_Q = 4e²/49k_BT</span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">General k</span>
+        <span class="pcr-value" style="font-family:'Libre Baskerville',serif;color:var(--accent-light)">C⁽ᵏ⁾_Q = e²(k²−1)/12k²k_BT</span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">Entanglement</span>
+        <span class="pcr-value" style="font-family:'Libre Baskerville',serif;color:var(--accent-light)">S_vN = log₂7 ≈ 2.807 ebits</span>
+      </div>
+      <div class="paper-card-row">
+        <span class="pcr-label">Teleportation fidelity</span>
+        <span class="pcr-value" style="font-family:'Libre Baskerville',serif;color:var(--accent-light)">F_tel ≈ 0.989 (η=0.99)</span>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- MORE RESEARCH -->
+<section class="more-papers">
+  <div style="max-width:1200px;margin:0 auto">
+    <h3>More from ASISIANQUANTUM™</h3>
+    <div class="papers-row">
+      <a href="#" class="paper-tile">
+        <span class="pt-cat">In Preparation · Quantum Algorithms</span>
+        <div class="pt-title">Quantum Fourier Transform Circuits for Z₇ Qudit Systems</div>
+        <span class="pt-status">Coming 2026</span>
+      </a>
+      <a href="#" class="paper-tile">
+        <span class="pt-cat">In Preparation · Materials Science</span>
+        <div class="pt-title">Fractional Topological Insulator Platforms for k=7 Parafermionic Zero Modes</div>
+        <span class="pt-status">Coming 2026</span>
+      </a>
+      <a href="index.html#contact" class="paper-tile">
+        <span class="pt-cat">Collaboration</span>
+        <div class="pt-title">Interested in collaborating on heptron theory or experimental realisation?</div>
+        <span class="pt-status" style="color:var(--accent-light)">Get in touch →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand">
+      <span class="logo">ASISIAN<span class="r">QUANTUM</span>.™</span>
+      <p>Original quantum computing research. A YEGOZCORP.™ subsidiary. All IP vested to YEGOZCORP.™</p>
+    </div>
+    <div class="g-footer-col"><h4>Research</h4><ul>
+      <li><a href="research.html">Higher Order Quantum Capacitance</a></li>
+      <li><a href="#">QFT for Z₇ Qudits</a></li>
+      <li><a href="#">FTI Platform Design</a></li>
+    </ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#technology">Technology</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="../../index.html">YEGOZCORP.™</a></li>
+    </ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul>
+      <li><a href="../chipdeepsanaa/index.html">ChipDeepSanaa™</a></li>
+      <li><a href="../yegobio/index.html">YEGOBIO™</a></li>
+      <li><a href="../asaistudioz/index.html">asaiSTUDIOZ™</a></li>
+    </ul></div>
+  </div>
+  <div class="g-footer-bottom">
+    <span>© 2026 ASISIANQUANTUM™ · YEGOZCORP.™ · All IP vested to YEGOZCORP.™</span>
+    <a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>
