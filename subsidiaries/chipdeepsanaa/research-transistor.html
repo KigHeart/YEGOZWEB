@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transistor Physics & Future AI Chips — ChipDeepSanaa™ Research</title>
+<meta name="description" content="The Physics of Transistor Evolution and the Future of AI Chips. From FinFET to GAAFet, CFET, 2D Materials. Deep Research Monograph by Kiprop Yego, March 2026.">
+<link rel="stylesheet" href="../../css/shared.css">
+<style>
+:root { --accent: #00b4d8; --bg: #050a0f; }
+body { background: var(--bg); color: #e0e8f0; }
+.g-nav { background: rgba(5,10,15,0.97); border-bottom-color: rgba(0,180,216,0.12); }
+.g-nav-logo { color: #e0e8f0; }
+.g-nav-links a { color: rgba(255,255,255,0.45); }
+
+.research-hero {
+  min-height: 60vh; display:flex; flex-direction:column;
+  justify-content:flex-end; padding:9rem 5rem 5rem;
+  position:relative; overflow:hidden;
+  border-bottom:1px solid rgba(0,180,216,0.12);
+}
+.research-hero::before {
+  content:''; position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 100% 0%, rgba(0,180,216,0.09) 0%, transparent 60%),
+    repeating-linear-gradient(90deg, rgba(0,180,216,0.03) 0px, rgba(0,180,216,0.03) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg, rgba(0,180,216,0.03) 0px, rgba(0,180,216,0.03) 1px, transparent 1px, transparent 80px);
+  pointer-events:none;
+}
+.breadcrumb {
+  font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); margin-bottom:2.5rem;
+  display:flex; align-items:center; gap:0.8rem;
+  position:relative; z-index:1; animation:fadeUp 0.8s ease both;
+}
+.breadcrumb a { color:var(--accent); text-decoration:none; }
+.breadcrumb a:hover { opacity:0.7; }
+.breadcrumb span { opacity:0.4; }
+.paper-category {
+  font-size:0.68rem; letter-spacing:0.35em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:1.5rem;
+  position:relative; z-index:1; animation:fadeUp 0.8s ease both; animation-delay:0.1s;
+}
+.paper-title {
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-size:clamp(1.8rem,4.5vw,3.5rem); font-weight:700;
+  line-height:1.1; color:#fff; max-width:900px;
+  position:relative; z-index:1; animation:fadeUp 0.8s ease both; animation-delay:0.2s;
+}
+.paper-title .b { color:var(--accent); }
+.paper-subtitle {
+  font-family:'Amiri',serif; font-size:clamp(1rem,1.8vw,1.15rem);
+  color:rgba(255,255,255,0.5); max-width:780px; margin-top:0.8rem;
+  font-style:italic; position:relative; z-index:1;
+  animation:fadeUp 0.8s ease both; animation-delay:0.28s;
+}
+.paper-meta {
+  display:flex; align-items:center; gap:2rem; flex-wrap:wrap;
+  margin-top:2.5rem; position:relative; z-index:1;
+  animation:fadeUp 0.8s ease both; animation-delay:0.38s;
+}
+.meta-item { display:flex; flex-direction:column; gap:0.3rem; }
+.meta-label { font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+.meta-value { font-size:0.92rem; color:rgba(255,255,255,0.75); }
+.meta-value .b { color:var(--accent); }
+.meta-sep { width:1px; height:36px; background:rgba(255,255,255,0.1); }
+.paper-actions {
+  display:flex; gap:1rem; flex-wrap:wrap; margin-top:3rem;
+  position:relative; z-index:1; animation:fadeUp 0.8s ease both; animation-delay:0.5s;
+}
+.btn-accent { background:var(--accent); color:#000; padding:0.85rem 2rem; border:2px solid var(--accent); font-family:'Amiri',serif; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; display:inline-block; }
+.btn-accent:hover { background:transparent; color:var(--accent); }
+.btn-accent-ghost { background:transparent; color:var(--accent); padding:0.85rem 2rem; border:2px solid rgba(0,180,216,0.35); font-family:'Amiri',serif; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; display:inline-block; }
+.btn-accent-ghost:hover { background:var(--accent); color:#000; }
+
+.research-body {
+  max-width:1200px; margin:0 auto; padding:6rem 5rem;
+  display:grid; grid-template-columns:1fr 320px; gap:5rem; align-items:start;
+}
+
+.paper-abstract {
+  background:rgba(0,180,216,0.05); border:1px solid rgba(0,180,216,0.15);
+  border-left:4px solid var(--accent); padding:2.5rem; margin-bottom:4rem;
+}
+.paper-abstract h3 { font-family:'Libre Baskerville',Georgia,serif; font-size:0.72rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent); margin-bottom:1.2rem; }
+.paper-abstract p { font-size:1rem; line-height:1.9; color:rgba(255,255,255,0.6); }
+.paper-abstract p strong { color:rgba(255,255,255,0.9); }
+
+.section-block { margin-bottom:4rem; }
+.section-block h2 { font-family:'Libre Baskerville',Georgia,serif; font-size:1.45rem; font-weight:700; color:#fff; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid rgba(0,180,216,0.12); }
+.section-block h2 .b { color:var(--accent); }
+.section-block p { font-size:1rem; line-height:1.9; color:rgba(255,255,255,0.52); margin-bottom:1.2rem; }
+.section-block p strong { color:rgba(255,255,255,0.85); }
+
+.eq-block { background:rgba(0,0,0,0.5); border:1px solid rgba(0,180,216,0.18); padding:1.8rem 2.5rem; margin:2rem 0; position:relative; }
+.eq-block .eq-label { position:absolute; top:0.8rem; right:1.2rem; font-size:0.62rem; letter-spacing:0.2em; color:rgba(255,255,255,0.2); }
+.eq-block .eq-text { font-family:'Libre Baskerville',Georgia,serif; font-size:1.05rem; color:var(--accent); text-align:center; }
+.eq-block .eq-desc { font-size:0.85rem; color:rgba(255,255,255,0.38); text-align:center; margin-top:0.7rem; line-height:1.6; }
+
+.roadmap-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:rgba(0,180,216,0.1); margin:2.5rem 0; }
+.roadmap-item { background:var(--bg); padding:2rem 1.8rem; border-top:3px solid transparent; transition:border-color 0.3s; }
+.roadmap-item:hover { border-color:var(--accent); }
+.roadmap-year { font-family:'Libre Baskerville',Georgia,serif; font-size:1.1rem; font-weight:700; color:var(--accent); margin-bottom:0.5rem; }
+.roadmap-node { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:0.8rem; display:block; }
+.roadmap-desc { font-size:0.9rem; line-height:1.7; color:rgba(255,255,255,0.42); }
+
+.data-table { width:100%; border-collapse:collapse; margin:2rem 0; }
+.data-table th { font-family:'Amiri',serif; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); padding:0.8rem 1rem; border-bottom:2px solid rgba(0,180,216,0.25); text-align:left; }
+.data-table td { font-size:0.88rem; color:rgba(255,255,255,0.5); padding:0.85rem 1rem; border-bottom:1px solid rgba(0,180,216,0.07); }
+.data-table tr:hover td { background:rgba(0,180,216,0.04); }
+.data-table td:first-child { color:rgba(255,255,255,0.75); }
+.data-table .hl { color:var(--accent); font-weight:700; }
+
+.cite-block { background:rgba(0,0,0,0.5); border:1px solid rgba(0,180,216,0.12); padding:1.5rem 2rem; margin-top:3rem; }
+.cite-block h4 { font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+.cite-block pre { font-family:'Courier New',monospace; font-size:0.78rem; color:rgba(255,255,255,0.45); line-height:1.75; white-space:pre-wrap; word-break:break-word; }
+
+.toc { background:rgba(0,180,216,0.05); border:1px solid rgba(0,180,216,0.15); padding:2rem; position:sticky; top:6rem; }
+.toc h4 { font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; }
+.toc ol { list-style:none; counter-reset:toc; display:flex; flex-direction:column; }
+.toc li { counter-increment:toc; }
+.toc li a { display:flex; align-items:baseline; gap:0.6rem; font-size:0.84rem; color:rgba(255,255,255,0.38); text-decoration:none; padding:0.5rem 0; border-bottom:1px solid rgba(0,180,216,0.07); transition:color 0.3s; }
+.toc li a:hover { color:var(--accent); }
+.toc li a::before { content:counter(toc,decimal-leading-zero); font-size:0.62rem; color:var(--accent); flex-shrink:0; }
+.paper-card { background:rgba(0,180,216,0.05); border:1px solid rgba(0,180,216,0.15); padding:2rem; margin-top:2rem; }
+.paper-card h4 { font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; }
+.paper-card-row { display:flex; flex-direction:column; gap:0.3rem; padding:0.75rem 0; border-bottom:1px solid rgba(0,180,216,0.08); }
+.paper-card-row:last-child { border-bottom:none; }
+.pcr-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.28); }
+.pcr-value { font-size:0.88rem; color:rgba(255,255,255,0.62); }
+.pcr-value .b { color:var(--accent); }
+.pcr-value a { color:var(--accent); text-decoration:none; }
+
+.related { background:rgba(0,180,216,0.04); padding:5rem; border-top:1px solid rgba(0,180,216,0.1); }
+.related h3 { font-family:'Libre Baskerville',Georgia,serif; font-size:1.3rem; font-weight:700; color:#fff; margin-bottom:2.5rem; }
+.related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(0,180,216,0.1); }
+.related-tile { background:var(--bg); padding:2.5rem 2rem; text-decoration:none; display:block; border-top:3px solid transparent; transition:all 0.3s; }
+.related-tile:hover { background:rgba(0,180,216,0.05); border-color:var(--accent); }
+.rt-cat { font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; display:block; }
+.rt-title { font-family:'Libre Baskerville',Georgia,serif; font-size:1rem; font-weight:700; color:#fff; line-height:1.3; margin-bottom:0.7rem; }
+.rt-status { font-size:0.8rem; color:rgba(255,255,255,0.3); }
+
+@media(max-width:1000px) {
+  .research-body { grid-template-columns:1fr; gap:3rem; padding:4rem 2rem; }
+  .research-hero { padding:8rem 2rem 4rem; }
+  .related { padding:4rem 2rem; }
+  .related-grid { grid-template-columns:1fr; }
+  .toc { position:static; }
+}
+</style>
+</head>
+<body>
+
+<nav class="g-nav dark-nav">
+  <a href="index.html" class="g-nav-logo">
+    Chip<span class="r">Deep</span>Sanaa<sup style="font-size:0.5em">™</sup>
+    <a href="../../index.html" class="parent-link">YEGOZCORP.™</a>
+  </a>
+  <ul class="g-nav-links">
+    <li><a href="index.html#products">Products</a></li>
+    <li><a href="index.html#technology">Technology</a></li>
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Partner</a></li>
+  </ul>
+</nav>
+
+<section class="research-hero">
+  <div class="breadcrumb">
+    <a href="../../index.html">YEGOZCORP.™</a>
+    <span>›</span>
+    <a href="index.html">ChipDeepSanaa™</a>
+    <span>›</span>
+    <a href="index.html#research">Research</a>
+    <span>›</span>
+    <span style="color:rgba(255,255,255,0.5)">Transistor Physics</span>
+  </div>
+  <p class="paper-category">Deep Research Monograph · Semiconductor Physics · AI Hardware · March 2026</p>
+  <h1 class="paper-title">The Physics of <span class="b">Transistor Evolution</span><br>and the Future of AI Chips</h1>
+  <p class="paper-subtitle">From FinFET to GAAFet, CFET, 2D Materials, and the Architecture of Tomorrow's AI Silicon — Incorporating Latest Results from IEDM 2025, Nature Electronics, imec & IRDS</p>
+  <div class="paper-meta">
+    <div class="meta-item">
+      <span class="meta-label">Author</span>
+      <span class="meta-value"><span class="b">Kiprop Yego</span> — Independent Research</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Date</span>
+      <span class="meta-value">March 2026</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Sources</span>
+      <span class="meta-value">IEDM 2024/2025 · imec · IRDS · TSMC · Nature Comms</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-label">Status</span>
+      <span class="meta-value" style="color:#4ade80">● Published Monograph</span>
+    </div>
+  </div>
+  <div class="paper-actions">
+    <a href="transistor_ai_physics_2026.pdf" class="btn-accent" download>↓ Download PDF</a>
+    <a href="research-transmamba.html" class="btn-accent-ghost">Also: TransMamba-MoE →</a>
+    <a href="index.html#contact" class="btn-accent-ghost">Collaborate →</a>
+  </div>
+</section>
+
+<div class="research-body">
+<main>
+
+  <div class="paper-abstract reveal">
+    <h3>Central Thesis</h3>
+    <p>
+      The history of transistor scaling is a history of progressively recovering <strong>electrostatic gate control over the channel</strong>. Every architecture change — FinFET, GAAFet, CFET, 2D materials — solves the same underlying equation: reducing the natural length scale <strong>λ</strong> to suppress sub-threshold leakage, drain-induced barrier lowering (DIBL), and quantum tunnelling. The implications for AI chips are <strong>architectural, not merely parametric</strong>.
+    </p>
+  </div>
+
+  <div class="section-block reveal">
+    <h2>The <span class="b">Central Equation</span> — Why Everything Changes</h2>
+    <p>Every transistor architecture in history can be understood through one equation — the characteristic length λ, which governs how far the drain electric field penetrates into the channel:</p>
+    <div class="eq-block">
+      <span class="eq-label">Eq. 5 — Planar MOSFET</span>
+      <div class="eq-text">λ = √(ε_Si/ε_ox · t_Si · t_ox)</div>
+      <div class="eq-desc">Short-channel effects become severe when gate length L_g ≲ 5λ. Every architecture reduces λ.</div>
+    </div>
+    <p>For GAAFet nanosheets (TSMC N2), this becomes:</p>
+    <div class="eq-block">
+      <span class="eq-label">Eq. 15 — Nanosheet GAA</span>
+      <div class="eq-text">λ_NS ≈ √(ε_Si/ε_ox · T_NS/4 · t_ox) ≈ 1.6 nm at N2</div>
+      <div class="eq-desc">The factor of 4 (vs 2 for FinFET) reflects 4-sided gate control. Enables L_g as short as 8 nm.</div>
+    </div>
+    <p>And for 2D materials (the Angstrom Era):</p>
+    <div class="eq-block">
+      <span class="eq-label">Eq. 26 — 2D Material (MoS₂)</span>
+      <div class="eq-text">λ_2D ≈ √(ε_ch/C_gate · t_ch) ≈ 0.9 nm for MoS₂ (t_ch = 0.65 nm)</div>
+      <div class="eq-desc">Sub-1 nm λ enables true Angstrom-Era gate lengths while maintaining SCE suppression (L_g/λ > 5).</div>
+    </div>
+  </div>
+
+  <div class="section-block reveal">
+    <h2>Architecture <span class="b">Evolution</span> — The Full Progression</h2>
+    <p>Each transistor generation solves a specific failure mode of its predecessor:</p>
+    <div class="roadmap-grid">
+      <div class="roadmap-item">
+        <div class="roadmap-year">Planar MOSFET</div>
+        <span class="roadmap-node">Pre-2011 · &gt;22nm</span>
+        <p class="roadmap-desc">Gate on top only. At short channels, drain field penetrates entire body. SCE uncontrollable below ~100nm.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-year">FinFET</div>
+        <span class="roadmap-node">2011–2025 · 22nm→3nm</span>
+        <p class="roadmap-desc">3-sided gate on vertical silicon fin. λ_DG ≈ 2.3nm. Fails below 3nm: fin collapse, bottom leakage, quantised current.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-year">GAAFet Nanosheet</div>
+        <span class="roadmap-node">2025–2028 · N2/A16</span>
+        <p class="roadmap-desc">4-sided gate wraps all surfaces. λ_NS ≈ 1.6nm. Continuous W_NS tuning. TSMC N2: +15% perf, −30% power vs N3E.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-year">Forksheet FET</div>
+        <span class="roadmap-node">2029–2030 · A10</span>
+        <p class="roadmap-desc">n/p separated by thin dielectric wall. Eliminates n-p spacing without full CFET challenge. 5% lower RO delay.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-year">CFET</div>
+        <span class="roadmap-node">2031+ · A7/A3</span>
+        <p class="roadmap-desc">n-FET stacked directly on p-FET. Eliminates n-p gap from cell height. 10–20% area reduction. imec: 79% yield at 18nm gate.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-year">2D Materials</div>
+        <span class="roadmap-node">2034+ · A3/A2</span>
+        <p class="roadmap-desc">MoS₂ (n) + WSe₂ (p) channels. Atomically thin (0.65nm). λ &lt; 1nm. IEDM 2024: I_on = 451 µA/µm, I_on/I_off &gt; 10⁹.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-block reveal">
+    <h2>TSMC N2 vs N3E — <span class="b">Quantitative Data</span></h2>
+    <table class="data-table">
+      <thead><tr><th>Metric</th><th>N3E (FinFET)</th><th>N2 (GAAFet)</th></tr></thead>
+      <tbody>
+        <tr><td>Gate Architecture</td><td>FinFET (3-sided)</td><td class="hl">Nanosheet GAA (4-sided)</td></tr>
+        <tr><td>CPP</td><td>48 nm</td><td class="hl">42 nm</td></tr>
+        <tr><td>Performance gain (iso-power)</td><td>baseline</td><td class="hl">+15%</td></tr>
+        <tr><td>Power reduction (iso-perf.)</td><td>baseline</td><td class="hl">−30%</td></tr>
+        <tr><td>Logic density gain</td><td>baseline</td><td class="hl">+20%</td></tr>
+        <tr><td>λ [nm]</td><td>≈ 2.8</td><td class="hl">≈ 1.6</td></tr>
+        <tr><td>Sub-threshold swing S</td><td>~68 mV/dec</td><td class="hl">~63 mV/dec</td></tr>
+        <tr><td>DIBL [mV/V]</td><td>~80</td><td class="hl">~40</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-block reveal">
+    <h2>Present AI Chips — <span class="b">Transistor-Level Analysis</span></h2>
+    <p><strong>NVIDIA Blackwell (B200):</strong> 208B transistors at TSMC N4P (4nm FinFET — paradoxically pre-GAAFet). Two GB100 dies fused via 10 TB/s NV-HBI interconnect. FP4 Tensor Cores deliver ~18 PFLOPS. Power density of 1,250 W/cm² mandates liquid cooling.</p>
+    <div class="eq-block">
+      <span class="eq-label">Roofline Model — GPU vs LPU</span>
+      <div class="eq-text">P_attain = min(P_peak, B × I)</div>
+      <div class="eq-desc">For LLM inference at batch=1: I ≈ 1–2 FLOP/byte. A 3.9 PFLOP GPU is limited to ~5 TFLOPS — just 0.13% of peak. This is why Groq wins at inference.</div>
+    </div>
+    <p><strong>Groq LPU:</strong> ~220 MB on-chip SRAM (~10B transistors in 6T cells). Static compiler scheduling achieves η_util ≈ 0.99 vs 0.1–0.3 for GPU warp scheduling. Result: >1,600 tokens/second vs 10–30 for GPU at batch=1.</p>
+  </div>
+
+  <div class="section-block reveal">
+    <h2>The AI Token <span class="b">Energy Roadmap</span></h2>
+    <p>The total energy per LLM inference token decomposes across three components — and each transistor generation attacks a different one:</p>
+    <div class="eq-block">
+      <span class="eq-label">Eq. 51</span>
+      <div class="eq-text">E_token = E_compute + E_DRAM + E_interconnect</div>
+      <div class="eq-desc">Each technology transition targets a specific term. Combined roadmap: ~100× reduction in E_token between 2025 and 2035.</div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Technology</th><th>Targets</th><th>Reduction</th></tr></thead>
+      <tbody>
+        <tr><td>GAAFet N2</td><td>E_compute</td><td class="hl">−30% (lower V_DD)</td></tr>
+        <tr><td>FP4 precision</td><td>E_compute + E_DRAM</td><td class="hl">Halves B_weight</td></tr>
+        <tr><td>Silicon photonics CPO</td><td>E_interconnect</td><td class="hl">5× (5 pJ/bit vs 5–20)</td></tr>
+        <tr><td>Memristive crossbars</td><td>E_compute + E_DRAM</td><td class="hl">10× + eliminates DRAM fetch</td></tr>
+        <tr><td>CFET (A7, 2031+)</td><td>E_compute</td><td class="hl">−40% via density + V_DD scaling</td></tr>
+        <tr><td>2D materials (A3+)</td><td>E_compute</td><td class="hl">−25× via sub-thermal switching</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-block reveal">
+    <h2>The AI Chip of <span class="b">2035</span></h2>
+    <p>The AI chip of 2035 will not be a faster GPU. Based on the transistor roadmap, it will be a <strong>heterogeneous, photonically-interconnected, memristively-augmented system-in-package</strong> operating on principles architecturally orthogonal to CUDA:</p>
+    <p><strong>Compute Die A</strong> — Dense FP4/FP8 training on TSMC A14 GAAFet. <strong>Compute Die B</strong> — Deterministic LPU-style inference on SRAM-optimised N3. <strong>Memory Die</strong> — HBM4 for bandwidth + capacity. <strong>Photonic I/O Die</strong> — 400+ Tb/s optical I/O at 5 pJ/bit. <strong>Neuro Die</strong> — Memristive SNN cores at &lt;1 fJ/MAC, 10× more efficient than digital CMOS.</p>
+    <p>All integrated on a silicon or glass interposer with &lt;1 µm bump pitch and &gt;1 TB/s die-to-die bandwidth.</p>
+  </div>
+
+  <div class="cite-block reveal">
+    <h4>Cite This Work</h4>
+    <pre>Yego, K. (2026). The Physics of Transistor Evolution and the Future of AI Chips [Deep Research Monograph].
+ChipDeepSanaa™ / YEGOZCORP.™ Independent Research. March 2026.
+Sources: IEDM 2024/2025, imec IRDS, TSMC N2 disclosures, Nature Communications Engineering.
+Retrieved from https://kigheart.github.io/YEGOZWEB/subsidiaries/chipdeepsanaa/research-transistor.html</pre>
+  </div>
+
+</main>
+
+<aside>
+  <div class="toc reveal">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#">Central Thesis</a></li>
+      <li><a href="#">The Central Equation</a></li>
+      <li><a href="#">Architecture Evolution</a></li>
+      <li><a href="#">TSMC N2 vs N3E Data</a></li>
+      <li><a href="#">AI Chips — Transistor Level</a></li>
+      <li><a href="#">Energy Roadmap</a></li>
+      <li><a href="#">The AI Chip of 2035</a></li>
+      <li><a href="#">How to Cite</a></li>
+    </ol>
+  </div>
+
+  <div class="paper-card reveal">
+    <h4>Paper Details</h4>
+    <div class="paper-card-row"><span class="pcr-label">Author</span><span class="pcr-value"><span class="b">Kiprop Yego</span></span></div>
+    <div class="paper-card-row"><span class="pcr-label">Affiliation</span><span class="pcr-value">ChipDeepSanaa™ / YEGOZCORP.™</span></div>
+    <div class="paper-card-row"><span class="pcr-label">Type</span><span class="pcr-value">Deep Research Monograph</span></div>
+    <div class="paper-card-row"><span class="pcr-label">Date</span><span class="pcr-value">March 2026</span></div>
+    <div class="paper-card-row"><span class="pcr-label">Pages</span><span class="pcr-value">22 pages, 5 tables, 2 figures</span></div>
+    <div class="paper-card-row"><span class="pcr-label">Primary Sources</span><span class="pcr-value">IEDM 2024/2025 · imec · TSMC · Nature Comms · IRDS 2022</span></div>
+    <div class="paper-card-row"><span class="pcr-label">Subject</span><span class="pcr-value">Semiconductor Physics · AI Hardware · Device Engineering</span></div>
+  </div>
+
+  <div class="paper-card reveal" style="margin-top:2rem">
+    <h4>Key Numbers</h4>
+    <div class="paper-card-row"><span class="pcr-label">TSMC N2 perf gain</span><span class="pcr-value" style="color:var(--accent)">+15% vs N3E</span></div>
+    <div class="paper-card-row"><span class="pcr-label">TSMC N2 power reduction</span><span class="pcr-value" style="color:var(--accent)">−30% vs N3E</span></div>
+    <div class="paper-card-row"><span class="pcr-label">MoS₂ λ</span><span class="pcr-value" style="color:var(--accent)">0.9 nm</span></div>
+    <div class="paper-card-row"><span class="pcr-label">Groq token speed</span><span class="pcr-value" style="color:var(--accent)">&gt;1600 tok/s vs ~20 GPU</span></div>
+    <div class="paper-card-row"><span class="pcr-label">Energy reduction by 2035</span><span class="pcr-value" style="color:var(--accent)">~100× per token</span></div>
+    <div class="paper-card-row"><span class="pcr-label">Memristive MAC energy</span><span class="pcr-value" style="color:var(--accent)">~1 fJ vs ~10 fJ CMOS</span></div>
+  </div>
+
+  <div class="paper-card reveal" style="margin-top:2rem">
+    <h4>More Research</h4>
+    <div class="paper-card-row"><span class="pcr-label">ChipDeepSanaa™</span><span class="pcr-value"><a href="research-transmamba.html">TransMamba-MoE →</a></span></div>
+    <div class="paper-card-row"><span class="pcr-label">ASISIANQUANTUM™</span><span class="pcr-value"><a href="../asisianquantum/research.html">Heptron Paper →</a></span></div>
+  </div>
+</aside>
+</div>
+
+<section class="related">
+  <div style="max-width:1200px;margin:0 auto">
+    <h3>More from ChipDeepSanaa™</h3>
+    <div class="related-grid">
+      <a href="research-transmamba.html" class="related-tile">
+        <span class="rt-cat">AI Architecture · cs.LG · March 2026</span>
+        <div class="rt-title">TransMamba-MoE: Hybrid Transformer–Mamba with Fine-Grained MoE</div>
+        <span class="rt-status" style="color:var(--accent)">Read paper →</span>
+      </a>
+      <a href="../asisianquantum/research.html" class="related-tile">
+        <span class="rt-cat">Quantum Computing · quant-ph · March 2026</span>
+        <div class="rt-title">Higher Order Quantum Capacitance & The Heptron Architecture</div>
+        <span class="rt-status" style="color:var(--accent)">Read paper →</span>
+      </a>
+      <a href="index.html#contact" class="related-tile">
+        <span class="rt-cat">Collaboration</span>
+        <div class="rt-title">Interested in silicon architecture research or foundry partnerships?</div>
+        <span class="rt-status" style="color:var(--accent)">Get in touch →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="g-footer">
+  <div class="g-footer-top">
+    <div class="g-footer-brand"><span class="logo">Chip<span class="r">Deep</span>Sanaa.™</span><p>AI hardware research and silicon design. A YEGOZCORP.™ subsidiary.</p></div>
+    <div class="g-footer-col"><h4>Research</h4><ul>
+      <li><a href="research-transistor.html">Transistor Physics & AI Chips</a></li>
+      <li><a href="research-transmamba.html">TransMamba-MoE</a></li>
+      <li><a href="../asisianquantum/research.html">Heptron Paper</a></li>
+    </ul></div>
+    <div class="g-footer-col"><h4>Company</h4><ul>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#products">Products</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="../../index.html">YEGOZCORP.™</a></li>
+    </ul></div>
+    <div class="g-footer-col"><h4>Portfolio</h4><ul>
+      <li><a href="../asisianquantum/index.html">ASISIANQUANTUM™</a></li>
+      <li><a href="../yegobio/index.html">YEGOBIO™</a></li>
+      <li><a href="../asaistudioz/index.html">asaiSTUDIOZ™</a></li>
+    </ul></div>
+  </div>
+  <div class="g-footer-bottom">
+    <span>© 2026 ChipDeepSanaa™ · YEGOZCORP.™ · All IP vested to YEGOZCORP.™</span>
+    <a href="../../index.html">YEGOZ<span style="color:var(--crimson)">CORP</span>.™</a>
+  </div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>
